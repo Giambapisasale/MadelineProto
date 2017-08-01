@@ -382,7 +382,7 @@ trait UpdateHandler
             if ($update['pts'] <= $cur_state['pts']) {
                 \danog\MadelineProto\Logger::log(['Duplicate update, channel id: '.$channel_id], \danog\MadelineProto\Logger::ERROR);
 
-                return false;
+                // return false;
             }
             if ($cur_state['pts'] + (isset($update['pts_count']) ? $update['pts_count'] : 0) !== $update['pts']) {
                 \danog\MadelineProto\Logger::log(['Pts hole. current pts: '.$cur_state['pts'].', pts count: '.(isset($update['pts_count']) ? $update['pts_count'] : 0).', pts: '.$update['pts'].', channel id: '.$channel_id], \danog\MadelineProto\Logger::ERROR);
