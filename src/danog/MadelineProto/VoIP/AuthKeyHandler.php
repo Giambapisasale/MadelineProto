@@ -134,6 +134,9 @@ trait AuthKeyHandler
         }
         $this->calls[$params['id']]->setVisualization($visualization);
 
+        $this->calls[$params['id']]->configuration['shared_config'] = array_merge($this->method_call('phone.getCallConfig', [], ['datacenter' => $this->datacenter->curdc]), $this->calls[$params['id']]->configuration['shared_config']);
+        $this->calls[$params['id']]->configuration['endpoints'] = array_merge([$res['connection']], $res['alternative_connections'], $this->calls[$params['id']]->configuration['endpoints']);
+
         $this->calls[$params['id']]->configuration = array_merge([
             'recv_timeout'         => $this->config['call_receive_timeout_ms'] / 1000,
             'init_timeout'         => $this->config['call_connect_timeout_ms'] / 1000,
@@ -141,13 +144,9 @@ trait AuthKeyHandler
             'enable_NS'            => true,
             'enable_AEC'           => true,
             'enable_AGC'           => true,
-            'log_file_path'        => '/dev/null',
-            'stats_dump_file_path' => '/dev/null',
 
             'auth_key'      => $key,
             'network_type'  => \danog\MadelineProto\VoIP::NET_TYPE_ETHERNET,
-            'shared_config' => $this->method_call('phone.getCallConfig', [], ['datacenter' => $this->datacenter->curdc]),
-            'endpoints'     => array_merge([$res['connection']], $res['alternative_connections']),
         ], $this->calls[$params['id']]->configuration);
         $this->calls[$params['id']]->parseConfig();
         $res = $this->calls[$params['id']]->startTheMagic();
@@ -195,6 +194,8 @@ trait AuthKeyHandler
         }
 
         $this->calls[$params['id']]->setVisualization($visualization);
+        $this->calls[$params['id']]->configuration['shared_config'] = array_merge($this->method_call('phone.getCallConfig', [], ['datacenter' => $this->datacenter->curdc]), $this->calls[$params['id']]->configuration['shared_config']);
+        $this->calls[$params['id']]->configuration['endpoints'] = array_merge([$params['connection']], $params['alternative_connections'], $this->calls[$params['id']]->configuration['endpoints']);
 
         $this->calls[$params['id']]->configuration = array_merge([
             'recv_timeout'         => $this->config['call_receive_timeout_ms'] / 1000,
@@ -203,14 +204,11 @@ trait AuthKeyHandler
             'enable_NS'            => true,
             'enable_AEC'           => true,
             'enable_AGC'           => true,
-            'log_file_path'        => '/dev/null',
-            'stats_dump_file_path' => '/dev/null',
 
             'auth_key'      => $key,
             'network_type'  => \danog\MadelineProto\VoIP::NET_TYPE_ETHERNET,
-            'shared_config' => $this->method_call('phone.getCallConfig', [], ['datacenter' => $this->datacenter->curdc]),
-            'endpoints'     => array_merge([$params['connection']], $params['alternative_connections']),
         ], $this->calls[$params['id']]->configuration);
+        var_dump($this->calls[$params['id']]->configuration);
         $this->calls[$params['id']]->parseConfig();
 
         return $this->calls[$params['id']]->startTheMagic();
@@ -270,7 +268,7 @@ trait AuthKeyHandler
             \danog\MadelineProto\Logger::log(['Setting rating for call '.$call['id'].'...'], \danog\MadelineProto\Logger::VERBOSE);
             $this->method_call('phone.setCallRating', ['peer' => $call, 'rating' => $rating['rating'], 'comment' => $rating['comment']], ['datacenter' => $this->datacenter->curdc]);
         }
-        if ($need_debug) {
+        if ($need_debug) {//} && isset($this->calls[$call['id']]->storage['not_modified'])) {
             \danog\MadelineProto\Logger::log(['Saving debug data for call '.$call['id'].'...'], \danog\MadelineProto\Logger::VERBOSE);
             $this->method_call('phone.saveCallDebug', ['peer' => $call, 'debug' => $this->calls[$call['id']]->getDebugLog()], ['datacenter' => $this->datacenter->curdc]);
         }

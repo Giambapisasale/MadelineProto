@@ -44,7 +44,7 @@ class MTProto extends \Volatile
     use \danog\MadelineProto\Wrappers\DialogHandler;
     use \danog\MadelineProto\Wrappers\Login;
 
-    const V = 68;
+    const V = 69;
 
     const NOT_LOGGED_IN = 0;
     const WAITING_CODE = 1;
@@ -606,6 +606,9 @@ class MTProto extends \Volatile
 
     public function reset_session($de = true, $auth_key = false)
     {
+        if (!is_object($this->datacenter)) {
+            throw new Exception('The session is corrupted!');
+        }
         foreach ($this->datacenter->sockets as $id => $socket) {
             if ($de) {
                 \danog\MadelineProto\Logger::log(['Resetting session id'.($auth_key ? ', authorization key' : '').' and seq_no in DC '.$id.'...'], Logger::VERBOSE);
@@ -777,7 +780,11 @@ class MTProto extends \Volatile
             unset($dc['ipv6']);
             $this->settings['connection'][$test][$ipv6][$id] = $dc;
         }
-        $this->datacenter->__construct($this->settings['connection'], $this->settings['connection_settings']);
+        $curdc = $this->datacenter->curdc;
+        $this->datacenter->dclist = $this->settings['connection'];
+        $this->datacenter->settings = $this->settings['connection_settings'];
+        $this->connect_to_all_dcs();
+        $this->datacenter->curdc = $curdc;
     }
 
     public function get_self()
