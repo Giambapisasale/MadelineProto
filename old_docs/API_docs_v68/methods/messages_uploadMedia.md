@@ -9,12 +9,23 @@ description: messages.uploadMedia parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |media|[InputMedia](../types/InputMedia.md) | Yes|
 
 
 ### Return type: [MessageMedia](../types/MessageMedia.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|BOT_MISSING|This method can only be run by a bot|
+|PEER_ID_INVALID|The provided peer id is invalid|
+
 
 ### Example:
 
@@ -57,7 +68,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.uploadMedia`
 Parameters:
 
 peer - Json encoded InputPeer
+
 media - Json encoded InputMedia
+
 
 
 

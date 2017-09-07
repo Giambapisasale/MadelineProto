@@ -9,12 +9,15 @@ description: channels.toggleComments parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |enabled|[Bool](../types/Bool.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.toggleComments`
 Parameters:
 
 channel - Json encoded InputChannel
+
 enabled - Json encoded Bool
+
 
 
 

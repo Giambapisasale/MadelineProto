@@ -9,13 +9,24 @@ description: messages.getGameHighScores parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |id|[int](../types/int.md) | Yes|
 |user\_id|[InputUser](../types/InputUser.md) | Yes|
 
 
 ### Return type: [messages\_HighScores](../types/messages_HighScores.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|PEER_ID_INVALID|The provided peer id is invalid|
+|USER_BOT_REQUIRED|This method can only be called by a bot|
+
 
 ### Example:
 
@@ -58,8 +69,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getGameHighScores`
 Parameters:
 
 peer - Json encoded InputPeer
+
 id - Json encoded int
+
 user_id - Json encoded InputUser
+
 
 
 

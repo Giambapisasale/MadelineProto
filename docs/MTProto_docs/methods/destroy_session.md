@@ -9,11 +9,14 @@ description: destroy_session parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |session\_id|[long](../types/long.md) | Yes|
 
 
 ### Return type: [DestroySessionRes](../types/DestroySessionRes.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/destroy_session`
 Parameters:
 
 session_id - Json encoded long
+
 
 
 

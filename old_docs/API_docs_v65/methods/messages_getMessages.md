@@ -9,11 +9,14 @@ description: messages.getMessages parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |id|Array of [int](../types/int.md) | Yes|
 
 
 ### Return type: [messages\_Messages](../types/messages_Messages.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getMessages`
 Parameters:
 
 id - Json encoded  array of int
+
 
 
 

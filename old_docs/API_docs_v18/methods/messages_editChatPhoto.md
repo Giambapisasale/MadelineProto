@@ -9,12 +9,23 @@ description: messages.editChatPhoto parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |chat\_id|[InputPeer](../types/InputPeer.md) | Yes|
 |photo|[InputChatPhoto](../types/InputChatPhoto.md) | Yes|
 
 
 ### Return type: [messages\_StatedMessage](../types/messages_StatedMessage.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHAT_ID_INVALID|The provided chat id is invalid|
+|PEER_ID_INVALID|The provided peer id is invalid|
+
 
 ### Example:
 
@@ -57,7 +68,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.editChatPhoto`
 Parameters:
 
 chat_id - Json encoded InputPeer
+
 photo - Json encoded InputChatPhoto
+
 
 
 

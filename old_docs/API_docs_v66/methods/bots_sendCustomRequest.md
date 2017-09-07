@@ -9,12 +9,22 @@ description: bots.sendCustomRequest parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |custom\_method|[string](../types/string.md) | Yes|
 |params|[DataJSON](../types/DataJSON.md) | Yes|
 
 
 ### Return type: [DataJSON](../types/DataJSON.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|USER_BOT_INVALID|This method can only be called by a bot|
+
 
 ### Example:
 
@@ -57,7 +67,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/bots.sendCustomRequest`
 Parameters:
 
 custom_method - Json encoded string
+
 params - Json encoded DataJSON
+
 
 
 

@@ -9,12 +9,23 @@ description: bots.answerWebhookJSONQuery parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |query\_id|[long](../types/long.md) | Yes|
 |data|[DataJSON](../types/DataJSON.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|QUERY_ID_INVALID|The query ID is invalid|
+|USER_BOT_INVALID|This method can only be called by a bot|
+
 
 ### Example:
 
@@ -57,7 +68,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/bots.answerWebhookJSONQuery`
 Parameters:
 
 query_id - Json encoded long
+
 data - Json encoded DataJSON
+
 
 
 

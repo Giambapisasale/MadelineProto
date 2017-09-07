@@ -9,12 +9,22 @@ description: channels.editTitle parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |title|[string](../types/string.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHANNEL_INVALID|The provided channel is invalid|
+
 
 ### Example:
 
@@ -57,7 +67,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.editTitle`
 Parameters:
 
 channel - Json encoded InputChannel
+
 title - Json encoded string
+
 
 
 

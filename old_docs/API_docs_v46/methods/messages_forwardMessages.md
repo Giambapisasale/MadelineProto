@@ -9,7 +9,7 @@ description: messages.forwardMessages parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |broadcast|[Bool](../types/Bool.md) | Optional|
 |from\_peer|[InputPeer](../types/InputPeer.md) | Yes|
 |id|Array of [int](../types/int.md) | Yes|
@@ -17,6 +17,23 @@ description: messages.forwardMessages parameters, return type and example
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHANNEL_PRIVATE|You haven't joined this channel/supergroup|
+|CHAT_ADMIN_REQUIRED|You must be an admin in this chat to do this|
+|CHAT_WRITE_FORBIDDEN|You can't write in this chat|
+|MESSAGE_ID_INVALID|The provided message id is invalid|
+|MESSAGE_IDS_EMPTY|No message ids were provided|
+|PEER_ID_INVALID|The provided peer id is invalid|
+|RANDOM_ID_DUPLICATE|You provided a random ID that was already used|
+|Timeout|A timeout occurred while fetching data from the bot|
+
 
 ### Example:
 
@@ -59,9 +76,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.forwardMessages`
 Parameters:
 
 broadcast - Json encoded Bool
+
 from_peer - Json encoded InputPeer
+
 id - Json encoded  array of int
+
 to_peer - Json encoded InputPeer
+
 
 
 

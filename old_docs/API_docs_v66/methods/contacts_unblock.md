@@ -9,20 +9,27 @@ description: contacts.unblock parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |id|[InputUser](../types/InputUser.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CONTACT_ID_INVALID|The provided contact ID is invalid|
+
 
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -38,15 +45,6 @@ $Bool = $MadelineProto->contacts->unblock(['id' => InputUser, ]);
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - contacts.unblock
-* params - `{"id": InputUser, }`
-
 
 
 ### As a user:
@@ -56,6 +54,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/contacts.unblock`
 Parameters:
 
 id - Json encoded InputUser
+
 
 
 

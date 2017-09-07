@@ -9,7 +9,7 @@ description: messages.getImportantHistory parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |max\_id|[int](../types/int.md) | Yes|
 |min\_id|[int](../types/int.md) | Yes|
@@ -17,6 +17,9 @@ description: messages.getImportantHistory parameters, return type and example
 
 
 ### Return type: [messages\_Messages](../types/messages_Messages.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -59,9 +62,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getImportantHistory`
 Parameters:
 
 peer - Json encoded InputPeer
+
 max_id - Json encoded int
+
 min_id - Json encoded int
+
 limit - Json encoded int
+
 
 
 

@@ -9,7 +9,7 @@ description: messages.setGameScore parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |edit\_message|[Bool](../types/Bool.md) | Optional|
 |force|[Bool](../types/Bool.md) | Optional|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
@@ -19,6 +19,17 @@ description: messages.setGameScore parameters, return type and example
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|PEER_ID_INVALID|The provided peer id is invalid|
+|USER_BOT_REQUIRED|This method can only be called by a bot|
+
 
 ### Example:
 
@@ -61,11 +72,17 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.setGameScore`
 Parameters:
 
 edit_message - Json encoded Bool
+
 force - Json encoded Bool
+
 peer - Json encoded InputPeer
+
 id - Json encoded int
+
 user_id - Json encoded InputUser
+
 score - Json encoded int
+
 
 
 

@@ -12,32 +12,10 @@ Message is failed to send
 ### Attributes:
 
 | Name     |    Type       | Required | Description |
-|----------|:-------------:|:--------:|------------:|
+|----------|---------------|----------|-------------|
 
 
 
 ### Type: [MessageSendState](../types/MessageSendState.md)
-
-
-### Example:
-
-```
-$messageIsFailedToSend = ['_' => 'messageIsFailedToSend'];
-```  
-
-[PWRTelegram](https://pwrtelegram.xyz) json-encoded version:
-
-```
-{"_": "messageIsFailedToSend"}
-```
-
-
-Or, if you're into Lua:  
-
-
-```
-messageIsFailedToSend={_='messageIsFailedToSend'}
-
-```
 
 

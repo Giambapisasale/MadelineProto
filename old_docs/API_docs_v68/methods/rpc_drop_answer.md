@@ -9,11 +9,14 @@ description: rpc_drop_answer parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |req\_msg\_id|[long](../types/long.md) | Yes|
 
 
 ### Return type: [RpcDropAnswer](../types/RpcDropAnswer.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/rpc_drop_answer`
 Parameters:
 
 req_msg_id - Json encoded long
+
 
 
 

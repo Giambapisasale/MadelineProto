@@ -9,7 +9,7 @@ description: messages.editInlineBotMessage parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |no\_webpage|[Bool](../types/Bool.md) | Optional|
 |id|[InputBotInlineMessageID](../types/InputBotInlineMessageID.md) | Yes|
 |message|[string](../types/string.md) | Optional|
@@ -19,6 +19,17 @@ description: messages.editInlineBotMessage parameters, return type and example
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MESSAGE_ID_INVALID|The provided message id is invalid|
+|MESSAGE_NOT_MODIFIED|The message text has not changed|
+
 
 ### Example:
 

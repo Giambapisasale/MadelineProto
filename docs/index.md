@@ -2,29 +2,34 @@
 title: MadelineProto documentation
 description: PHP implementation of telegram's MTProto protocol
 ---
-# MadelineProto
-[![StyleCI](https://styleci.io/repos/61838413/shield)](https://styleci.io/repos/61838413)
-[![Build Status](https://travis-ci.org/danog/MadelineProto.svg?branch=master)](https://travis-ci.org/danog/MadelineProto)  
+# MadelineProto, a PHP MTProto telegram client
 
-Created by [Daniil Gentili](https://daniil.it), licensed under AGPLv3.
+Do join the official channel, [@MadelineProto](https://t.me/MadelineProto)!
 
-<img src='https://daniil.it/MadelineProto/logo.png' alt='MadelineProto logo' onmouseover="this.src='https://daniil.it/MadelineProto/logo-hover.png';" onmouseout="this.src='https://daniil.it/MadelineProto/logo.png';" />
+This library can be used to create php telegram bots (like bot API bots, only better) and php telegram userbots (like tg-cli userbots, only better).
 
-Logo created by [Matthew Hesketh](http://matthewhesketh.com) (thanks again!).  
+This library can also be used to create lua telegram bots (like bot API bots, only better) and lua telegram userbots (like tg-cli userbots, only better).
 
-PHP implementation of MTProto, based on [telepy](https://github.com/griganton/telepy_old).
+## Index: 
 
-This project can run on PHP 7 and HHVM, both 32 bit and 64 bit systems are supported. You must also install the mbstring, curl extensions and the PHP Lua extension if you want to use the lua binding.   
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Examples](#examples)
+- [Methods](#methods)
+- [Uploading and downloading files](#uploading-and-downloading-files)
+- [Usage](#usage)
+- [Settings](#settings)
+- [Update management (getting incoming messages)](#handling-updates)
+- [Using a proxy](#using-a-proxy)
+- [Calls](#calls)
+- [Secret chats](#secret-chats)
+- [Lua binding](#lua-binding)
+- [Storing sessions](#storing-sessions)
+- [Exceptions](#exceptions)
 
-Also note that MadelineProto will perform better if python and a big math extension like gmp or bcmath are installed.
 
-This project is in beta state.  
-
-The MadelineProto API documentation can be found [here (layer 70)](https://daniil.it/MadelineProto/API_docs/). VERY IMPORTANT READ THIS. 
-
-
-Features:
-
+## Features
 
 * It allows you to do everything official clients can do, programmatically!
 
@@ -63,24 +68,156 @@ Features:
 * PFS in secret chats
 
 
-## Acknowledgements
+## Requirements
 
-While writing this client, I looked at many projects for inspiration and help. Here's the full list:
+This project can only run on *PHP 7* and *HHVM*, both 32 bit and 64 bit systems are supported. 
 
-* [tgl](https://github.com/vysheng/tgl)
+To install *all of the requirements* on `Ubuntu`, `Debian`, `Devuan`, or any other `Debian-based` distro, run the following command in your command line:
 
-* [Kotlogram](https://github.com/badoualy/kotlogram)
+```
+curl https://daniil.it/php.sh | sudo bash -e
+```
 
-* [Webogram](https://github.com/zhukov/webogram)
 
-* [Telethon](https://github.com/LonamiWebs/Telethon/)
+On other platforms, use [Google](https://google.com) to find out how to install the following dependencies:
 
-Thanks to the devs that contributed to these projects, MadelineProto is now an easy, well-written and complete MTProto client.  
+You *must* install the `php-mbstring`, `php-curl`, `php-sockets`, `php-xml` extensions.
 
+You *must* install the `php-lua` extension if you want to use MadelineProto in lua, see [HERE](#lua-binding) for info on how use MadelineProto in lua.  
+
+You *must* install the [php-libtgvoip](https://voip.madelineproto.xyz) extension if you want to answer/make telegram phone calls, see [HERE](#calls) for info on how to answer/make telegram phone calls in MadelineProto.  
+
+You must install [git](https://git-scm.com/downloads).
+
+You must install [composer](https://getcomposer.org/download/).
+
+
+Also note that MadelineProto will perform better if [php-primemodule](https://prime.madelineproto.xyz), `python` and a big math extension like `php-gmp` are both installed.
+
+
+### Installation
+
+Run the following commands in a console:
+
+```
+mkdir MadelineProtoBot
+cd MadelineProtoBot
+git init .
+git submodule add https://github.com/danog/MadelineProto
+cd MadelineProto
+composer update
+cp .env.example .env
+cp -a *php tests bots .env* ..
+```
+
+Now open `.env` and edit its values as needed.
+
+
+## Examples
+
+You can find examples for nearly every MadelineProto function in
+* [`tests/testing.php`](https://github.com/danog/MadelineProto/blob/master/tests/testing.php) - examples for making/receiving calls, making secret chats, sending secret chat messages, videos, audios, voice recordings, gifs, stickers, photos, sending normal messages, videos, audios, voice recordings, gifs, stickers, photos.
+* [`bot.php`](https://github.com/danog/MadelineProto/blob/master/bot.php) - examples for sending normal messages, downloading any media
+* [`magna.php`](https://github.com/danog/MadelineProto/blob/master/magna.php) - examples for receiving calls
+* [`bots/pipesbot.php`](https://github.com/danog/MadelineProto/blob/master/bots/pipesbot.php) - examples for creating inline bots and using other inline bots via a userbot
+* [`bots/MadelineProto_bot.php`](https://github.com/danog/MadelineProto/blob/master/bots/MadelineProto_bot.php) - More fun shiz
+* [`bots/pwrtelegram_debug_bot`](https://github.com/danog/MadelineProto/blob/master/bots/pwrtelegram_debug_bot.php) - More fun shiz
+
+## Methods
+
+A list of all of the methods that can be called with MadelineProto can be found here: [here (layer 71)](https://daniil.it/MadelineProto/API_docs/).
+
+If an object of type User, InputUser, Chat, InputChannel, Peer or InputPeer must be provided as a parameter to a method, you can substitute it with the user/group/channel's username (`@username`) or bot API id (`-1029449`, `1249421`, `-100412412901`).  
+
+Methods that allow sending message entities ([messages.sendMessage](http://docs.madelineproto.xyz/API_docs/methods/messages_sendMessage.html) for example) also have an additional `parse_mode` parameter that enables or disables html/markdown parsing of the message to be sent. See the [method-specific](http://docs.madelineproto.xyz/API_docs/methods/messages_sendMessage.html) documentation for more info.  
+
+To convert the results of methods to bot API objects you must provide a second parameter to method wrappers, containing an array with the `botAPI` key set to true:
+
+```
+$bot_API_object = $MadelineProto->messages->sendMessage(['peer' => '@danogentili', 'message' => 'lel'], ['botAPI' => true]);
+```
+
+To disable fetching the result of a method, the array that must be provided as second parameter to method wrapper must have the `noResponse` key set to true.
+
+```
+$MadelineProto->messages->sendMessage(['peer' => '@danogentili', 'message' => 'lel'], ['noResponse' => true]);
+```
+
+reply_markup accepts bot API reply markup objects as well as MTProto ones.
+
+```
+$MadelineProto->messages->sendMessage(['peer' => '@danogentili', 'message' => 'lel', 'reply_markup' => $MTProto_markup]);
+$MadelineProto->messages->sendMessage(['peer' => '@danogentili', 'message' => 'lel', 'reply_markup' => $bot_API_markup]);
+```
+
+
+Use `phone_login` to login, see [here for the parameters and the result](https://daniil.it/MadelineProto/phone_login.html).  
+Use `complete_phone_login` to complete the login, see [here for the parameters and the result](https://daniil.it/MadelineProto/complete_phone_login.html).  
+Use `complete_2FA_login` to complete the login to an account with 2FA enabled, see [here for the parameters and the result](https://daniil.it/MadelineProto/complete_2FA_login.html).    
+Use `complete_signup` to signup, see [here for the parameters and the result](https://daniil.it/MadelineProto/complete_signup.html).  
+
+Use `bot_login` to login as a bot, see [here for the parameters and the result](https://daniil.it/MadelineProto/bot_login.html).  
+Note that when you login as a bot, MadelineProto also logins using the [PWRTelegram](https://pwrtelegram.xyz) API, to allow persistant storage of peers, even after a logout and another login.  
+
+
+Use `logout` to logout, see [here for the parameters and the result](https://daniil.it/MadelineProto/logout.html).  
+
+
+Use `get_pwr_chat` to get chat info, see [here for the parameters and the result](https://daniil.it/MadelineProto/get_pwr_chat.html).  
+You can also use `get_info` to get chat info, see [here for the parameters and the result](https://daniil.it/MadelineProto/get_info.html)
+You can also use `get_full_info` to get chat info, see [here for the parameters and the result](https://daniil.it/MadelineProto/get_full_info.html).  
+
+You must use `get_dialogs` to get a list of all of the chats, see [here for the parameters and the result](https://daniil.it/MadelineProto/get_dialogs.html)
+
+You must use `get_self` to get info about the current user, see [here for the parameters and the result](https://daniil.it/MadelineProto/get_self.html)
+
+## Uploading and downloading files
+
+MadelineProto provides wrapper methods to upload and download files that support bot API file ids.
+
+Every method described in this section accepts a last optional paramater with a callable function that will be called during the upload/download using the first parameter to pass a floating point number indicating the upload/download status in percentage.  
+
+The upload method returns an [InputFile](https://daniil.it/MadelineProto/API_docs/types/InputFile.html) object that must be used to generate an [InputMedia](https://daniil.it/MadelineProto/API_docs/types/InputMedia.html) object, that can be later sent using the [sendmedia method](https://daniil.it/MadelineProto/API_docs/methods/messages_sendMedia.html).  
+
+The `upload_encrypted` method returns an [InputEncryptedFile](https://daniil.it/MadelineProto/API_docs/types/InputEncryptedFile.html) object that must be used to generate an [EncryptedMessage](https://daniil.it/MadelineProto/API_docs/types/EncryptedMessage.html) object, that can be later sent using the [sendEncryptedFile method](https://daniil.it/MadelineProto/API_docs/methods/messages_sendEncryptedFile.html).  
+
+
+```
+$inputFile = $MadelineProto->upload('file', 'optional new file name.ext');
+// Generate an inputMedia object and store it in $inputMedia, see tests/testing.php
+$MadelineProto->messages->sendMedia(['peer' => '@pwrtelegramgroup', 'media' => $inputMedia]);
+
+$inputEncryptedFile = $MadelineProto->upload_encrypted('file', 'optional new file name.ext');
+
+```
+
+To convert the result of sendMedia to a bot API file id select the messageMedia object from the output of the method and pass it to `$MadelineProto->API->MTProto_to_botAPI()`.  
+
+See tests/testing.php for more examples.
+
+
+There are multiple download methods that allow you to download a file to a directory, to a file or to a stream.  
+The first parameter of these functions must always be either a [messageMediaPhoto](https://daniil.it/MadelineProto/API_docs/constructors/messageMediaPhoto.html) or a [messageMediaDocument](https://daniil.it/MadelineProto/API_docs/constructors/messageMediaDocument.html) object, an [EncryptedMessage](https://daniil.it/MadelineProto/API_docs/types/EncryptedMessage.html) or a bot API file id. These objects are usually received in updates, see `bot.php` for examples
+
+
+```
+$output_file_name = $MadelineProto->download_to_dir($message_media, '/tmp/dldir');
+$custom_output_file_name = $MadelineProto->download_to_file($message_media, '/tmp/dldir/customname.ext');
+$stream = fopen('php://output', 'w'); // Stream to browser like with echo
+$MadelineProto->download_to_stream($message_media, $stream, $cb, $offset, $endoffset); // offset and endoffset are optional parameters that specify the byte from which to start downloading and the byte where to stop downloading (the latter non-inclusive), if not specified default to 0 and the size of the file
+```
 
 ## Usage
 
+### Instantiation
+
+```
+$MadelineProto = new \danog\MadelineProto\API();
+```
+
+
 ### RTFM
+
 
 If you have some questions about the usage of the methods of this library, you can join the [support group](https://telegram.me/pwrtelegramgroup) or contact [@danogentili](https://telegram.me/danogentili). 
 
@@ -98,29 +235,6 @@ I can offer support, however, when it comes to MadelineProto bugs or problems in
 
 If you're selling a MadelineProto base too, you really should consider donating at least 20% of the price of the base: [this is my PayPal](https://paypal.me/danog).
 
-### Installation
-
-```
-git clone https://github.com/danog/MadelineProto
-cd MadelineProto
-```
-
-Now copy .env.example to .env, edit the its values, read the docs and take a look at tests/testing.php, bot.php.
-
-### Dependencies
-
-To install dependencies install composer and run:
-```
-composer update
-```
-In the cloned repo.
-
-
-### Instantiation
-
-```
-$MadelineProto = new \danog\MadelineProto\API();
-```
 
 ### Settings
 
@@ -378,43 +492,6 @@ Works like [socket_getpeername](http://php.net/manual/en/function.socket-getpeer
 Works like [socket_getsockname](http://php.net/manual/en/function.socket-getsockname.php): the difference is that it returns an array with the `host` and the `port`.
 
 
-### Uploading and downloading files
-
-MadelineProto provides wrapper methods to upload and download files that support bot API file ids.
-
-Every method described in this section accepts a last optional paramater with a callable function that will be called during the upload/download using the first parameter to pass a floating point number indicating the upload/download status in percentage.  
-
-The upload method returns an [InputFile](https://daniil.it/MadelineProto/API_docs/types/InputFile.html) object that must be used to generate an [InputMedia](https://daniil.it/MadelineProto/API_docs/types/InputMedia.html) object, that can be later sent using the [sendmedia method](https://daniil.it/MadelineProto/API_docs/methods/messages_sendMedia.html).  
-
-The `upload_encrypted` method returns an [InputEncryptedFile](https://daniil.it/MadelineProto/API_docs/types/InputEncryptedFile.html) object that must be used to generate an [EncryptedMessage](https://daniil.it/MadelineProto/API_docs/types/EncryptedMessage.html) object, that can be later sent using the [sendEncryptedFile method](https://daniil.it/MadelineProto/API_docs/methods/messages_sendEncryptedFile.html).  
-
-
-```
-$inputFile = $MadelineProto->upload('file', 'optional new file name.ext');
-// Generate an inputMedia object and store it in $inputMedia, see tests/testing.php
-$MadelineProto->messages->sendMedia(['peer' => '@pwrtelegramgroup', 'media' => $inputMedia]);
-
-$inputEncryptedFile = $MadelineProto->upload_encrypted('file', 'optional new file name.ext');
-
-```
-
-To convert the result of sendMedia to a bot API file id select the messageMedia object from the output of the method and pass it to `$MadelineProto->API->MTProto_to_botAPI()`.  
-
-See tests/testing.php for more examples.
-
-
-There are multiple download methods that allow you to download a file to a directory, to a file or to a stream.  
-The first parameter of these functions must always be either a [messageMediaPhoto](https://daniil.it/MadelineProto/API_docs/constructors/messageMediaPhoto.html) or a [messageMediaDocument](https://daniil.it/MadelineProto/API_docs/constructors/messageMediaDocument.html) object, an [EncryptedMessage](https://daniil.it/MadelineProto/API_docs/types/EncryptedMessage.html) or a bot API file id. These objects are usually received in updates, see `bot.php` for examples
-
-
-```
-$output_file_name = $MadelineProto->download_to_dir($message_media, '/tmp/dldir');
-$custom_output_file_name = $MadelineProto->download_to_file($message_media, '/tmp/dldir/customname.ext');
-$stream = fopen('php://output', 'w'); // Stream to browser like with echo
-$MadelineProto->download_to_stream($message_media, $stream, $cb, $offset, $endoffset); // offset and endoffset are optional parameters that specify the byte from which to start downloading and the byte where to stop downloading (the latter non-inclusive), if not specified default to 0 and the size of the file
-```
-
-
 ### Calls
 
 MadelineProto provides an easy wrapper to work with phone calls.
@@ -542,59 +619,6 @@ td-cli wrappers are also present: you can use the tdcli_function in lua and pass
 For examples, see `lua/*`.
 
 
-### Calling mtproto methods and available wrappers
-
-The API documentation can be found [here](https://daniil.it/MadelineProto/API_docs/).  
-To call an MTProto method simply call it as if it is a method of the API class, substitute namespace sepators (.) with -> if needed.
-Also, an object of type User, InputUser, Chat, InputChannel, Peer or InputPeer must be provided as a parameter to a method, you can substitute it with the user/group/channel's username or bot API id.  
-
-```
-$MadelineProto = new \danog\MadelineProto\API();
-$checkedPhone = $MadelineProto->auth->checkPhone( // auth.checkPhone becomes auth->checkPhone
-    [
-        'phone_number'     => '3993838383', // Random invalid number, note that there should be no +
-    ]
-);
-$ping = $MadelineProto->ping([3]); // parameter names can be omitted as long as the order specified by the TL scheme is respected
-$message = "Hey! I'm sending this message with MadelineProto!";
-$sentMessage = $MadelineProto->messages->sendMessage(['peer' => '@danogentili', 'message' => $message]);
-var_dump($sentMessage);
-
-$me = $MadelineProto->get_self(); // This gets info about the currently logged in user as a User object
-```
-
-The API class also provides some wrapper methods for logging in as a bot or as a normal user, and for getting inputPeer constructors to use in sendMessage and other methods:
-
-```
-$sentCode = $MadelineProto->phone_login($number); // Send code
-var_dump($sentCode);
-echo 'Enter the code you received: ';
-$code = '';
-for ($x = 0; $x < $sentCode['type']['length']; $x++) {
-    $code .= fgetc(STDIN);
-}
-$authorization = $MadelineProto->complete_phone_login($code); // Complete authorization
-var_dump($authorization);
-
-$authorization = $MadelineProto->bot_login($token); // Note that every time you login as a bot or as a user MadelineProto will logout first, so now MadelineProto is logged in as the bot with token $token, not as the user with number $number
-var_dump($authorization);
-```
-
-See tests/testing.php for more examples.
-
-Use `get_pwr_chat` to get chat info, see [here for the parameters and the result](https://daniil.it/MadelineProto/get_pwr_chat.html).  
-You can also use `get_info` to get chat info, see [here for the parameters and the result](https://daniil.it/MadelineProto/get_info.html)You can also use `get_full_info` to get chat info, see [here for the parameters and the result](https://daniil.it/MadelineProto/get_full_info.html).  
-
-Methods that allow sending message entities (messages.sendMessage for example) also have an additional parse_mode parameter that enables or disables html/markdown parsing of the message to be sent. See the method-specific documentation for more info.  
-
-To convert the results of methods to bot API objects you must provide a second parameter to method wrappers, containing an array with the `botAPI` key set to true.
-
-To disable fetching the result of a method, the array that must be provided as second parameter to method wrapper must have the `noResponse` key set to true.
-
-reply_markup accepts bot API reply markup objects as well as MTProto ones.
-
-Note that when you login as a bot, MadelineProto also logins using the [PWRTelegram](https://pwrtelegram.xyz) API, to allow persistant storage of peers, even after a logout and another login.  
-
 ### Storing sessions
 
 An istance of MadelineProto can be safely serialized or unserialized. To serialize MadelineProto to a file, you must use the `\danog\MadelineProto\Serialization` class:
@@ -603,9 +627,23 @@ An istance of MadelineProto can be safely serialized or unserialized. To seriali
 $MadelineProto = \danog\MadelineProto\Serialization::deserialize('session.madeline');
 // Do stuff
 \danog\MadelineProto\Serialization::serialize('session.madeline', $MadelineProto);
+// or
+$MadelineProto->serialize('session.madeline');
 ```  
 
-THe deserialize method accepts a second optional parameter, `$no_updates`, that can be set to true to avoid fetching updates on deserialization, and postpone parsing of updates received through the socket until the next deserialization.  
+Or
+
+```  
+$MadelineProto = \danog\MadelineProto\Serialization::deserialize('session.madeline');
+$MadelineProto->session = 'session.madeline';
+```  
+
+This way, if the scripts shutsdown normally (without ctrl+c or fatal errors/exceptions), the session will be serialized automatically.
+
+It is still recommended to serialize the session at every update.
+
+
+The deserialize method accepts a second optional parameter, `$no_updates`, that can be set to true to avoid fetching updates on deserialization, and postpone parsing of updates received through the socket until the next deserialization.  
 That class serializes using [MagicalSerializer](https://github.com/danog/MagicalSerializer).
 The same should be done when serializing to another destination manually, to avoid conflicts with other PHP scripts that are trying to serialize another instance of the class.
 
@@ -626,6 +664,22 @@ MadelineProto can throw lots of different exceptions:
 
 * \danog\MadelineProto\TL\Conversion\Exception - Thrown if some param/object can't be converted to/from bot API/TD/TD-CLI format (this includes markdown/html parsing)
 
+
+## Credits
+
+Created by [Daniil Gentili](https://daniil.it), licensed under AGPLv3, based on [telepy](https://github.com/griganton/telepy_old).
+
+While writing this client, I looked at many projects for inspiration and help. Here's the full list:
+
+* [tgl](https://github.com/vysheng/tgl)
+
+* [Kotlogram](https://github.com/badoualy/kotlogram)
+
+* [Webogram](https://github.com/zhukov/webogram)
+
+* [Telethon](https://github.com/LonamiWebs/Telethon/)
+
+Thanks to the devs that contributed to these projects, MadelineProto is now an easy, well-written and complete MTProto client.  
 
 
 ## Contributing

@@ -9,12 +9,15 @@ description: messages.getStickers parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |emoticon|[string](../types/string.md) | Yes|
 |hash|[string](../types/string.md) | Yes|
 
 
 ### Return type: [messages\_Stickers](../types/messages_Stickers.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getStickers`
 Parameters:
 
 emoticon - Json encoded string
+
 hash - Json encoded string
+
 
 
 

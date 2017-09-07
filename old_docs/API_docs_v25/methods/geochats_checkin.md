@@ -9,11 +9,14 @@ description: geochats.checkin parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputGeoChat](../types/InputGeoChat.md) | Yes|
 
 
 ### Return type: [geochats\_StatedMessage](../types/geochats_StatedMessage.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/geochats.checkin`
 Parameters:
 
 peer - Json encoded InputGeoChat
+
 
 
 

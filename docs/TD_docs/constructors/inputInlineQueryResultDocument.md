@@ -12,7 +12,7 @@ Represents link to a file
 ### Attributes:
 
 | Name     |    Type       | Required | Description |
-|----------|:-------------:|:--------:|------------:|
+|----------|---------------|----------|-------------|
 |id|[string](../types/string.md) | Yes|Unique identifier of this result|
 |title|[string](../types/string.md) | Yes|Title of the result|
 |description|[string](../types/string.md) | Yes|Short description of the result, if known|
@@ -27,33 +27,5 @@ Represents link to a file
 
 
 ### Type: [InputInlineQueryResult](../types/InputInlineQueryResult.md)
-
-
-### Example:
-
-```
-$inputInlineQueryResultDocument = ['_' => 'inputInlineQueryResultDocument', 'id' => 'string', 'title' => 'string', 'description' => 'string', 'document_url' => 'string', 'mime_type' => 'string', 'thumb_url' => 'string', 'thumb_width' => int, 'thumb_height' => int, 'reply_markup' => ReplyMarkup, 'input_message_content' => InputMessageContent];
-```  
-
-[PWRTelegram](https://pwrtelegram.xyz) json-encoded version:
-
-```
-{"_": "inputInlineQueryResultDocument", "id": "string", "title": "string", "description": "string", "document_url": "string", "mime_type": "string", "thumb_url": "string", "thumb_width": int, "thumb_height": int, "reply_markup": ReplyMarkup, "input_message_content": InputMessageContent}
-```
-
-
-Or, if you're into Lua:  
-
-
-```
-inputInlineQueryResultDocument={_='inputInlineQueryResultDocument', id='string', title='string', description='string', document_url='string', mime_type='string', thumb_url='string', thumb_width=int, thumb_height=int, reply_markup=ReplyMarkup, input_message_content=InputMessageContent}
-
-```
-
-
-
-## Usage of reply_markup
-
-You can provide bot API reply_markup objects here.  
 
 

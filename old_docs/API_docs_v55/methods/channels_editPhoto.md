@@ -9,12 +9,22 @@ description: channels.editPhoto parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |photo|[InputChatPhoto](../types/InputChatPhoto.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHANNEL_INVALID|The provided channel is invalid|
+
 
 ### Example:
 
@@ -57,7 +67,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.editPhoto`
 Parameters:
 
 channel - Json encoded InputChannel
+
 photo - Json encoded InputChatPhoto
+
 
 
 

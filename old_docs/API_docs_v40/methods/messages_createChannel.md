@@ -9,11 +9,14 @@ description: messages.createChannel parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |title|[string](../types/string.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.createChannel`
 Parameters:
 
 title - Json encoded string
+
 
 
 

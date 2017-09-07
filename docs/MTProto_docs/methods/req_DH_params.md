@@ -9,7 +9,7 @@ description: req_DH_params parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |nonce|[int128](../types/int128.md) | Yes|
 |server\_nonce|[int128](../types/int128.md) | Yes|
 |p|[bytes](../types/bytes.md) | Yes|
@@ -19,6 +19,9 @@ description: req_DH_params parameters, return type and example
 
 
 ### Return type: [Server\_DH\_Params](../types/Server_DH_Params.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -61,11 +64,17 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/req_DH_params`
 Parameters:
 
 nonce - Json encoded int128
+
 server_nonce - Json encoded int128
+
 p - Json encoded bytes
+
 q - Json encoded bytes
+
 public_key_fingerprint - Json encoded long
+
 encrypted_data - Json encoded bytes
+
 
 
 

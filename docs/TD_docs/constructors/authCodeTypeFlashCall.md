@@ -12,33 +12,11 @@ Code is delivered by the immediately cancelled call to the specified phone numbe
 ### Attributes:
 
 | Name     |    Type       | Required | Description |
-|----------|:-------------:|:--------:|------------:|
+|----------|---------------|----------|-------------|
 |pattern|[string](../types/string.md) | Yes|Pattern of the phone number from which the call will be done|
 
 
 
 ### Type: [AuthCodeType](../types/AuthCodeType.md)
-
-
-### Example:
-
-```
-$authCodeTypeFlashCall = ['_' => 'authCodeTypeFlashCall', 'pattern' => 'string'];
-```  
-
-[PWRTelegram](https://pwrtelegram.xyz) json-encoded version:
-
-```
-{"_": "authCodeTypeFlashCall", "pattern": "string"}
-```
-
-
-Or, if you're into Lua:  
-
-
-```
-authCodeTypeFlashCall={_='authCodeTypeFlashCall', pattern='string'}
-
-```
 
 

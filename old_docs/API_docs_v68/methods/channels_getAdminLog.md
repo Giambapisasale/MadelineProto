@@ -9,7 +9,7 @@ description: channels.getAdminLog parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |q|[string](../types/string.md) | Yes|
 |events\_filter|[ChannelAdminLogEventsFilter](../types/ChannelAdminLogEventsFilter.md) | Optional|
@@ -21,14 +21,22 @@ description: channels.getAdminLog parameters, return type and example
 
 ### Return type: [channels\_AdminLogResults](../types/channels_AdminLogResults.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHANNEL_INVALID|The provided channel is invalid|
+|CHAT_ADMIN_REQUIRED|You must be an admin in this chat to do this|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -44,15 +52,6 @@ $channels_AdminLogResults = $MadelineProto->channels->getAdminLog(['channel' => 
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - channels.getAdminLog
-* params - `{"channel": InputChannel, "q": "string", "events_filter": ChannelAdminLogEventsFilter, "admins": [InputUser], "max_id": long, "min_id": long, "limit": int, }`
-
 
 
 ### As a user:
@@ -62,12 +61,19 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.getAdminLog`
 Parameters:
 
 channel - Json encoded InputChannel
+
 q - Json encoded string
+
 events_filter - Json encoded ChannelAdminLogEventsFilter
+
 admins - Json encoded  array of InputUser
+
 max_id - Json encoded long
+
 min_id - Json encoded long
+
 limit - Json encoded int
+
 
 
 

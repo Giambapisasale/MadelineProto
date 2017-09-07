@@ -1,44 +1,22 @@
 ---
 title: updateGroup
-description: Some data about a group has been changed
+description: Some data about a group has been changed. This update is guaranteed to come before group identifier is returned to the client, if library knows anything about the group
 ---
 ## Constructor: updateGroup  
 [Back to constructors index](index.md)
 
 
 
-Some data about a group has been changed
+Some data about a group has been changed. This update is guaranteed to come before group identifier is returned to the client, if library knows anything about the group
 
 ### Attributes:
 
 | Name     |    Type       | Required | Description |
-|----------|:-------------:|:--------:|------------:|
+|----------|---------------|----------|-------------|
 |group|[group](../types/group.md) | Yes|New data about the group|
 
 
 
 ### Type: [Update](../types/Update.md)
-
-
-### Example:
-
-```
-$updateGroup = ['_' => 'updateGroup', 'group' => group];
-```  
-
-[PWRTelegram](https://pwrtelegram.xyz) json-encoded version:
-
-```
-{"_": "updateGroup", "group": group}
-```
-
-
-Or, if you're into Lua:  
-
-
-```
-updateGroup={_='updateGroup', group=group}
-
-```
 
 

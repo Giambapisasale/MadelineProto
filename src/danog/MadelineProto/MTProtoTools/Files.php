@@ -73,7 +73,7 @@ trait Files
             $constructor['key_fingerprint'] = $fingerprint;
             $constructor['key'] = $key;
             $constructor['iv'] = $iv;
-//            $constructor['md5_checksum'] = '';
+            //            $constructor['md5_checksum'] = '';
         }
 
         return $constructor;
@@ -181,6 +181,7 @@ trait Files
 
             return $res;
             case 'decryptedMessageMediaExternalDocument':
+            case 'document':
             $message_media = ['document' => $message_media];
             case 'messageMediaDocument':
             foreach ($message_media['document']['attributes'] as $attribute) {
@@ -232,11 +233,12 @@ trait Files
 
     public function download_to_file($message_media, $file, $cb = null)
     {
-        $file = str_replace('//', '/', $file);
-        $message_media = $this->get_download_info($message_media);
+        $file = preg_replace('|/+|', '/', $file);
         if (!file_exists($file)) {
             touch($file);
         }
+        $file = realpath($file);
+        $message_media = $this->get_download_info($message_media);
         $stream = fopen($file, 'r+b');
         flock($stream, LOCK_EX);
         $this->download_to_stream($message_media, $stream, $cb, filesize($file), -1);
@@ -316,6 +318,7 @@ trait Files
             if ($res['_'] === 'upload.cdnFileReuploadNeeded') {
                 \danog\MadelineProto\Logger::log(['File is not stored on CDN, requesting reupload!'], \danog\MadelineProto\Logger::NOTICE);
                 $this->get_config([], ['datacenter' => $this->datacenter->curdc]);
+
                 try {
                     $this->add_cdn_hashes($message_media['file_token'], $this->method_call('upload.reuploadCdnFile', ['file_token' => $message_media['file_token'], 'request_token' => $res['request_token']], ['heavy' => true, 'datacenter' => $old_dc]));
                 } catch (\danog\MadelineProto\RPCErrorException $e) {
@@ -344,10 +347,10 @@ trait Files
             if (isset($message_media['cdn_key'])) {
                 $ivec = substr($message_media['cdn_iv'], 0, 12).pack('N', $offset >> 4);
                 $res['bytes'] = $this->ctr_encrypt($res['bytes'], $message_media['cdn_key'], $ivec);
+                $this->check_cdn_hash($message_media['file_token'], $offset, $res['bytes'], $datacenter);
             }
             if (isset($message_media['key'])) {
                 $res['bytes'] = $ige->decrypt($res['bytes']);
-                $this->check_cdn_hash($msssage_media['file_token'], $offset, $res['bytes'], $datacenter);
             }
             if ($start_at) {
                 $res['bytes'] = substr($res['bytes'], $start_at);

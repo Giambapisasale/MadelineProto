@@ -9,7 +9,7 @@ description: messages.getBotCallbackAnswer parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |game|[Bool](../types/Bool.md) | Optional|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |msg\_id|[int](../types/int.md) | Yes|
@@ -18,14 +18,23 @@ description: messages.getBotCallbackAnswer parameters, return type and example
 
 ### Return type: [messages\_BotCallbackAnswer](../types/messages_BotCallbackAnswer.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MESSAGE_ID_INVALID|The provided message id is invalid|
+|PEER_ID_INVALID|The provided peer id is invalid|
+|Timeout|A timeout occurred while fetching data from the bot|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -41,15 +50,6 @@ $messages_BotCallbackAnswer = $MadelineProto->messages->getBotCallbackAnswer(['g
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - messages.getBotCallbackAnswer
-* params - `{"game": Bool, "peer": InputPeer, "msg_id": int, "data": "bytes", }`
-
 
 
 ### As a user:
@@ -59,9 +59,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getBotCallbackAnswer
 Parameters:
 
 game - Json encoded Bool
+
 peer - Json encoded InputPeer
+
 msg_id - Json encoded int
+
 data - Json encoded bytes
+
 
 
 

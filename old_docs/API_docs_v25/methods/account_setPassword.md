@@ -9,7 +9,7 @@ description: account.setPassword parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |current\_password\_hash|[bytes](../types/bytes.md) | Yes|
 |new\_salt|[bytes](../types/bytes.md) | Yes|
 |new\_password\_hash|[bytes](../types/bytes.md) | Yes|
@@ -17,6 +17,9 @@ description: account.setPassword parameters, return type and example
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -59,9 +62,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/account.setPassword`
 Parameters:
 
 current_password_hash - Json encoded bytes
+
 new_salt - Json encoded bytes
+
 new_password_hash - Json encoded bytes
+
 hint - Json encoded string
+
 
 
 

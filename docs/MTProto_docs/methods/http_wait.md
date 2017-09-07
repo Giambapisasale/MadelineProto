@@ -9,13 +9,16 @@ description: http_wait parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |max\_delay|[int](../types/int.md) | Yes|
 |wait\_after|[int](../types/int.md) | Yes|
 |max\_wait|[int](../types/int.md) | Yes|
 
 
 ### Return type: [HttpWait](../types/HttpWait.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -58,8 +61,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/http_wait`
 Parameters:
 
 max_delay - Json encoded int
+
 wait_after - Json encoded int
+
 max_wait - Json encoded int
+
 
 
 

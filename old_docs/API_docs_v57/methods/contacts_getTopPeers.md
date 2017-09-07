@@ -9,7 +9,7 @@ description: contacts.getTopPeers parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |correspondents|[Bool](../types/Bool.md) | Optional|
 |bots\_pm|[Bool](../types/Bool.md) | Optional|
 |bots\_inline|[Bool](../types/Bool.md) | Optional|
@@ -22,14 +22,21 @@ description: contacts.getTopPeers parameters, return type and example
 
 ### Return type: [contacts\_TopPeers](../types/contacts_TopPeers.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|TYPES_EMPTY|The types field is empty|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -45,15 +52,6 @@ $contacts_TopPeers = $MadelineProto->contacts->getTopPeers(['correspondents' => 
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - contacts.getTopPeers
-* params - `{"correspondents": Bool, "bots_pm": Bool, "bots_inline": Bool, "groups": Bool, "channels": Bool, "offset": int, "limit": int, "hash": int, }`
-
 
 
 ### As a user:
@@ -63,13 +61,21 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/contacts.getTopPeers`
 Parameters:
 
 correspondents - Json encoded Bool
+
 bots_pm - Json encoded Bool
+
 bots_inline - Json encoded Bool
+
 groups - Json encoded Bool
+
 channels - Json encoded Bool
+
 offset - Json encoded int
+
 limit - Json encoded int
+
 hash - Json encoded int
+
 
 
 

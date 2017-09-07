@@ -9,11 +9,14 @@ description: auth.dropTempAuthKeys parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |except\_auth\_keys|Array of [long](../types/long.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/auth.dropTempAuthKeys`
 Parameters:
 
 except_auth_keys - Json encoded  array of long
+
 
 
 

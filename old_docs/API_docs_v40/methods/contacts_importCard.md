@@ -9,20 +9,27 @@ description: contacts.importCard parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |export\_card|Array of [int](../types/int.md) | Yes|
 
 
 ### Return type: [User](../types/User.md)
+
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|NEED_MEMBER_INVALID|The provided member is invalid|
+
 
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -38,15 +45,6 @@ $User = $MadelineProto->contacts->importCard(['export_card' => [int], ]);
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - contacts.importCard
-* params - `{"export_card": [int], }`
-
 
 
 ### As a user:
@@ -56,6 +54,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/contacts.importCard`
 Parameters:
 
 export_card - Json encoded  array of int
+
 
 
 

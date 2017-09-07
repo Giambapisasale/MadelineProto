@@ -9,12 +9,22 @@ description: channels.editAbout parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |about|[string](../types/string.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHANNEL_INVALID|The provided channel is invalid|
+
 
 ### Example:
 
@@ -57,7 +67,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.editAbout`
 Parameters:
 
 channel - Json encoded InputChannel
+
 about - Json encoded string
+
 
 
 

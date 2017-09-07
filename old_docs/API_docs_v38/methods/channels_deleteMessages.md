@@ -9,12 +9,23 @@ description: channels.deleteMessages parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |id|Array of [int](../types/int.md) | Yes|
 
 
 ### Return type: [messages\_AffectedMessages](../types/messages_AffectedMessages.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHANNEL_INVALID|The provided channel is invalid|
+|MESSAGE_DELETE_FORBIDDEN|You can't delete one of the messages you tried to delete, most likely because it is a service message.|
+
 
 ### Example:
 
@@ -57,7 +68,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.deleteMessages`
 Parameters:
 
 channel - Json encoded InputChannel
+
 id - Json encoded  array of int
+
 
 
 

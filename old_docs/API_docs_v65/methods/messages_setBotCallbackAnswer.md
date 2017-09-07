@@ -9,7 +9,7 @@ description: messages.setBotCallbackAnswer parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |alert|[Bool](../types/Bool.md) | Optional|
 |query\_id|[long](../types/long.md) | Yes|
 |message|[string](../types/string.md) | Optional|
@@ -18,6 +18,16 @@ description: messages.setBotCallbackAnswer parameters, return type and example
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|QUERY_ID_INVALID|The query ID is invalid|
+
 
 ### Example:
 
@@ -60,10 +70,15 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.setBotCallbackAnswer
 Parameters:
 
 alert - Json encoded Bool
+
 query_id - Json encoded long
+
 message - Json encoded string
+
 url - Json encoded string
+
 cache_time - Json encoded int
+
 
 
 

@@ -9,11 +9,21 @@ description: messages.receivedQueue parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |max\_qts|[int](../types/int.md) | Yes|
 
 
 ### Return type: [Vector\_of\_long](../types/long.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MSG_WAIT_FAILED|A waiting call returned an error|
+
 
 ### Example:
 
@@ -56,6 +66,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.receivedQueue`
 Parameters:
 
 max_qts - Json encoded int
+
 
 
 

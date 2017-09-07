@@ -41,18 +41,21 @@ class Lua
         $this->madelineproto_lua = 1;
         $this->Lua->registerCallback('tdcli_function', [$this, 'tdcli_function']);
         $this->Lua->registerCallback('madeline_function', [$this, 'madeline_function']);
-        $this->Lua->registerCallback('var_dump', 'var_dump');
         foreach (get_class_methods($this->MadelineProto->API) as $method) {
             $this->Lua->registerCallback($method, [$this->MadelineProto->API, $method]);
         }
         $methods = [];
-        foreach ($this->MadelineProto->get_methods_namespaced() as $method => $namespace) {
+        foreach ($this->MadelineProto->get_methods_namespaced() as $pair) {
+            $namespace = key($pair);
+            $method = $pair[$namespace];
             if ($namespace === 'upload') {
                 continue;
             }
             $methods[$namespace][$method] = [$this->MadelineProto->{$namespace}, $method];
         }
-        foreach ($this->MadelineProto->get_method_namespaces() as $namespace) {
+        foreach ($this->MadelineProto->get_methods_namespaced() as $pair) {
+            $namespace = key($pair);
+            $method = $pair[$namespace];
             if ($namespace === 'upload') {
                 continue;
             }
@@ -60,6 +63,7 @@ class Lua
         }
         $this->MadelineProto->lua = true;
         foreach ($this->MadelineProto->get_methods_namespaced() as $method => $namespace) {
+            $namespace = key($pair);
             $this->MadelineProto->{$namespace}->lua = true;
         }
     }
@@ -96,7 +100,7 @@ class Lua
 
     private function convert_array($array)
     {
-        if (!$this->is_array($value)) {
+        if (!is_array($value)) {
             return $array;
         }
         if ($this->is_seqential($value)) {
@@ -127,6 +131,7 @@ class Lua
     public function __call($name, $params)
     {
         self::convert_objects($params);
+
         try {
             return $this->Lua->{$name}(...$params);
         } catch (\danog\MadelineProto\RPCErrorException $e) {
@@ -156,10 +161,13 @@ class Lua
         array_walk_recursive($data, function (&$value, $key) {
             if (is_object($value)) {
                 $newval = [];
-                foreach (get_class_methods($value) as $key => $name) {
-                    $newval[$key] = [$value, $name];
+                foreach (get_class_methods($value) as $name) {
+                    $newval[$name] = [$value, $name];
                 }
                 foreach ($value as $key => $name) {
+                    if ($key === 'madeline') {
+                        continue;
+                    }
                     $newval[$key] = $name;
                 }
                 if ($newval === []) {

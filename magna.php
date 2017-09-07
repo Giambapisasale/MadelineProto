@@ -10,6 +10,8 @@ See the GNU Affero General Public License for more details.
 You should have received a copy of the GNU General Public License along with MadelineProto.
 If not, see <http://www.gnu.org/licenses/>.
 */
+set_include_path(get_include_path().':'.realpath(dirname(__FILE__).'/MadelineProto/'));
+
 require_once 'vendor/autoload.php';
 if (file_exists('web_data.php')) {
     require_once 'web_data.php';
@@ -17,6 +19,7 @@ if (file_exists('web_data.php')) {
 
 echo 'Deserializing MadelineProto from session.madeline...'.PHP_EOL;
 $MadelineProto = false;
+
 try {
     $MadelineProto = \danog\MadelineProto\Serialization::deserialize('session.madeline');
 } catch (\danog\MadelineProto\Exception $e) {
@@ -85,13 +88,14 @@ $m = new \danog\MadelineProto\API($settings);
 $m->import_authorization($MadelineProto->export_authorization());
 */
 $calls = [];
+$users = [];
     $offset = 0;
     while (1) {
         $updates = $MadelineProto->API->get_updates(['offset' => $offset, 'limit' => 50, 'timeout' => 0]); // Just like in the bot API, you can specify an offset, a limit and a timeout
         foreach ($calls as $key => $call) {
-            if ($call->getOutputState() >= \danog\MadelineProto\VoIP::AUDIO_STATE_CREATED) {
+            if ($call->getCallState() === \danog\MadelineProto\VoIP::CALL_STATE_ENDED) {
                 try {
-                    $MadelineProto->messages->sendMessage(['peer' => $call->getOtherID(), 'message' => 'Emojis: '.implode('', $call->getVisualization())]);
+                    //$MadelineProto->messages->sendMessage(['peer' => $call->getOtherID(), 'message' => 'Emojis: '.implode('', $call->getVisualization())]);
                 } catch (\danog\MadelineProto\RPCErrorException $e) {
                 }
                 unset($calls[$key]);
@@ -106,8 +110,12 @@ $calls = [];
                     if ($update['update']['message']['out'] || $update['update']['message']['to_id']['_'] !== 'peerUser' || !isset($update['update']['message']['from_id'])) {
                         continue;
                     }
+
                     try {
-                        $MadelineProto->messages->sendMessage(['peer' => $update['update']['message']['from_id'], 'message' => 'Call me!']);
+                        if (!isset($users[$update['update']['message']['from_id']])) {
+                            $users[$update['update']['message']['from_id']] = true;
+                            $MadelineProto->messages->sendMessage(['peer' => $update['update']['message']['from_id'], 'message' => 'Call me! Powered by @MadelineProto.']);
+                        }
                     } catch (\danog\MadelineProto\RPCErrorException $e) {
                     }
                     break;

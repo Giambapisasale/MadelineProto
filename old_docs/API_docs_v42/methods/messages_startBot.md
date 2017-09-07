@@ -9,7 +9,7 @@ description: messages.startBot parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |bot|[InputUser](../types/InputUser.md) | Yes|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |start\_param|[string](../types/string.md) | Yes|
@@ -17,14 +17,23 @@ description: messages.startBot parameters, return type and example
 
 ### Return type: [Updates](../types/Updates.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|PEER_ID_INVALID|The provided peer id is invalid|
+|START_PARAM_EMPTY|The start parameter is empty|
+|START_PARAM_INVALID|Start parameter invalid|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -40,15 +49,6 @@ $Updates = $MadelineProto->messages->startBot(['bot' => InputUser, 'peer' => Inp
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - messages.startBot
-* params - `{"bot": InputUser, "peer": InputPeer, "start_param": "string", }`
-
 
 
 ### As a user:
@@ -58,8 +58,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.startBot`
 Parameters:
 
 bot - Json encoded InputUser
+
 peer - Json encoded InputPeer
+
 start_param - Json encoded string
+
 
 
 

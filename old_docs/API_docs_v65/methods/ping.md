@@ -9,11 +9,14 @@ description: ping parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |ping\_id|[long](../types/long.md) | Yes|
 
 
 ### Return type: [Pong](../types/Pong.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/ping`
 Parameters:
 
 ping_id - Json encoded long
+
 
 
 

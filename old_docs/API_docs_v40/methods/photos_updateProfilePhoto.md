@@ -9,21 +9,21 @@ description: photos.updateProfilePhoto parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |id|[InputPhoto](../types/InputPhoto.md) | Yes|
 |crop|[InputPhotoCrop](../types/InputPhotoCrop.md) | Yes|
 
 
 ### Return type: [UserProfilePhoto](../types/UserProfilePhoto.md)
 
+### Can bots use this method: **NO**
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -39,15 +39,6 @@ $UserProfilePhoto = $MadelineProto->photos->updateProfilePhoto(['id' => InputPho
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - photos.updateProfilePhoto
-* params - `{"id": InputPhoto, "crop": InputPhotoCrop, }`
-
 
 
 ### As a user:
@@ -57,7 +48,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/photos.updateProfilePhoto`
 Parameters:
 
 id - Json encoded InputPhoto
+
 crop - Json encoded InputPhotoCrop
+
 
 
 

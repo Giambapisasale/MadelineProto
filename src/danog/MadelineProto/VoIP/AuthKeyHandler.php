@@ -78,6 +78,7 @@ trait AuthKeyHandler
         $b = \phpseclib\Math\BigInteger::randomRange($this->two, $dh_config['p']->subtract($this->two));
         $g_b = $dh_config['g']->powMod($b, $dh_config['p']);
         $this->check_G($g_b, $dh_config['p']);
+
         try {
             $res = $this->method_call('phone.acceptCall', ['peer' => $call, 'g_b' => $g_b->toBytes(), 'protocol' => ['_' => 'phoneCallProtocol', 'udp_reflector' => true, 'udp_p2p' => true, 'min_layer' => 65, 'max_layer' => 65]], ['datacenter' => $this->datacenter->curdc]);
         } catch (\danog\MadelineProto\RPCErrorException $e) {
@@ -92,6 +93,7 @@ trait AuthKeyHandler
 
                 return false;
             }
+
             throw $e;
         }
         $this->calls[$res['phone_call']['id']]->storage['b'] = $b;
@@ -136,7 +138,6 @@ trait AuthKeyHandler
 
         $this->calls[$params['id']]->configuration['shared_config'] = array_merge($this->method_call('phone.getCallConfig', [], ['datacenter' => $this->datacenter->curdc]), $this->calls[$params['id']]->configuration['shared_config']);
         $this->calls[$params['id']]->configuration['endpoints'] = array_merge([$res['connection']], $res['alternative_connections'], $this->calls[$params['id']]->configuration['endpoints']);
-
         $this->calls[$params['id']]->configuration = array_merge([
             'recv_timeout'         => $this->config['call_receive_timeout_ms'] / 1000,
             'init_timeout'         => $this->config['call_connect_timeout_ms'] / 1000,
@@ -257,6 +258,7 @@ trait AuthKeyHandler
             return;
         }
         \danog\MadelineProto\Logger::log(['Discarding call '.$call['id'].'...'], \danog\MadelineProto\Logger::VERBOSE);
+
         try {
             $res = $this->method_call('phone.discardCall', ['peer' => $call, 'duration' => time() - $this->calls[$call['id']]->whenCreated(), 'connection_id' => $this->calls[$call['id']]->getPreferredRelayID(), 'reason' => $reason], ['datacenter' => $this->datacenter->curdc]);
         } catch (\danog\MadelineProto\RPCErrorException $e) {

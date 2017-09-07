@@ -9,12 +9,15 @@ description: geochats.editChatPhoto parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputGeoChat](../types/InputGeoChat.md) | Yes|
 |photo|[InputChatPhoto](../types/InputChatPhoto.md) | Yes|
 
 
 ### Return type: [geochats\_StatedMessage](../types/geochats_StatedMessage.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/geochats.editChatPhoto`
 Parameters:
 
 peer - Json encoded InputGeoChat
+
 photo - Json encoded InputChatPhoto
+
 
 
 

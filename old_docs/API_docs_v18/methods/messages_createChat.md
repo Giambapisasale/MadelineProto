@@ -9,21 +9,29 @@ description: messages.createChat parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |users|Array of [InputUser](../types/InputUser.md) | Yes|
 |title|[string](../types/string.md) | Yes|
 
 
 ### Return type: [messages\_StatedMessage](../types/messages_StatedMessage.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|USER_RESTRICTED|You're spamreported, you can't create channels or chats.|
+|USERS_TOO_FEW|Not enough users (to create a chat, for example)|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -39,15 +47,6 @@ $messages_StatedMessage = $MadelineProto->messages->createChat(['users' => [Inpu
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - messages.createChat
-* params - `{"users": [InputUser], "title": "string", }`
-
 
 
 ### As a user:
@@ -57,7 +56,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.createChat`
 Parameters:
 
 users - Json encoded  array of InputUser
+
 title - Json encoded string
+
 
 
 

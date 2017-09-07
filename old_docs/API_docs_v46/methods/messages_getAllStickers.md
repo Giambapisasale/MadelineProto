@@ -9,20 +9,20 @@ description: messages.getAllStickers parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |hash|[int](../types/int.md) | Yes|
 
 
 ### Return type: [messages\_AllStickers](../types/messages_AllStickers.md)
+
+### Can bots use this method: **NO**
+
 
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -38,15 +38,6 @@ $messages_AllStickers = $MadelineProto->messages->getAllStickers(['hash' => int,
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - messages.getAllStickers
-* params - `{"hash": int, }`
-
 
 
 ### As a user:
@@ -56,6 +47,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getAllStickers`
 Parameters:
 
 hash - Json encoded int
+
 
 
 

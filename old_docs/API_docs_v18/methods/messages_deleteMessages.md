@@ -9,11 +9,14 @@ description: messages.deleteMessages parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |id|Array of [int](../types/int.md) | Yes|
 
 
 ### Return type: [Vector\_of\_int](../types/int.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.deleteMessages`
 Parameters:
 
 id - Json encoded  array of int
+
 
 
 

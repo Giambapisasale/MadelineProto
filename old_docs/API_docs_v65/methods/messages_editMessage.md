@@ -9,7 +9,7 @@ description: messages.editMessage parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |no\_webpage|[Bool](../types/Bool.md) | Optional|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |id|[int](../types/int.md) | Yes|
@@ -20,6 +20,19 @@ description: messages.editMessage parameters, return type and example
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHAT_WRITE_FORBIDDEN|You can't write in this chat|
+|MESSAGE_ID_INVALID|The provided message id is invalid|
+|MESSAGE_NOT_MODIFIED|The message text has not changed|
+|PEER_ID_INVALID|The provided peer id is invalid|
+
 
 ### Example:
 

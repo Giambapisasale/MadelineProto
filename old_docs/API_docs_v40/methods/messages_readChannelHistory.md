@@ -9,12 +9,15 @@ description: messages.readChannelHistory parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |max\_id|[int](../types/int.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.readChannelHistory`
 Parameters:
 
 peer - Json encoded InputPeer
+
 max_id - Json encoded int
+
 
 
 

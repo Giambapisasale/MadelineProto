@@ -9,20 +9,27 @@ description: payments.getPaymentReceipt parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |msg\_id|[int](../types/int.md) | Yes|
 
 
 ### Return type: [payments\_PaymentReceipt](../types/payments_PaymentReceipt.md)
+
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MESSAGE_ID_INVALID|The provided message id is invalid|
+
 
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -38,15 +45,6 @@ $payments_PaymentReceipt = $MadelineProto->payments->getPaymentReceipt(['msg_id'
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - payments.getPaymentReceipt
-* params - `{"msg_id": int, }`
-
 
 
 ### As a user:
@@ -56,6 +54,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/payments.getPaymentReceipt`
 Parameters:
 
 msg_id - Json encoded int
+
 
 
 

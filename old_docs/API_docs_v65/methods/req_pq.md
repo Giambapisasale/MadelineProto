@@ -9,11 +9,14 @@ description: req_pq parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |nonce|[int128](../types/int128.md) | Yes|
 
 
 ### Return type: [ResPQ](../types/ResPQ.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/req_pq`
 Parameters:
 
 nonce - Json encoded int128
+
 
 
 

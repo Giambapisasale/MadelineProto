@@ -9,21 +9,28 @@ description: messages.toggleDialogPin parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |pinned|[Bool](../types/Bool.md) | Optional|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|PEER_ID_INVALID|The provided peer id is invalid|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -39,15 +46,6 @@ $Bool = $MadelineProto->messages->toggleDialogPin(['pinned' => Bool, 'peer' => I
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - messages.toggleDialogPin
-* params - `{"pinned": Bool, "peer": InputPeer, }`
-
 
 
 ### As a user:
@@ -57,7 +55,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.toggleDialogPin`
 Parameters:
 
 pinned - Json encoded Bool
+
 peer - Json encoded InputPeer
+
 
 
 

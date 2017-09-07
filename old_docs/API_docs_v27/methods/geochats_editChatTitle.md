@@ -9,13 +9,16 @@ description: geochats.editChatTitle parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputGeoChat](../types/InputGeoChat.md) | Yes|
 |title|[string](../types/string.md) | Yes|
 |address|[string](../types/string.md) | Yes|
 
 
 ### Return type: [geochats\_StatedMessage](../types/geochats_StatedMessage.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -58,8 +61,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/geochats.editChatTitle`
 Parameters:
 
 peer - Json encoded InputGeoChat
+
 title - Json encoded string
+
 address - Json encoded string
+
 
 
 

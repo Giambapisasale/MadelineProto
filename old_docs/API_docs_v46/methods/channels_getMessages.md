@@ -9,12 +9,22 @@ description: channels.getMessages parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |id|Array of [int](../types/int.md) | Yes|
 
 
 ### Return type: [messages\_Messages](../types/messages_Messages.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHANNEL_INVALID|The provided channel is invalid|
+
 
 ### Example:
 
@@ -57,7 +67,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.getMessages`
 Parameters:
 
 channel - Json encoded InputChannel
+
 id - Json encoded  array of int
+
 
 
 

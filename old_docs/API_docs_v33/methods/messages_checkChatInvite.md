@@ -9,20 +9,29 @@ description: messages.checkChatInvite parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |hash|[string](../types/string.md) | Yes|
 
 
 ### Return type: [ChatInvite](../types/ChatInvite.md)
+
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|INVITE_HASH_EMPTY|The invite hash is empty|
+|INVITE_HASH_EXPIRED|The invite link has expired|
+|INVITE_HASH_INVALID|The invite hash is invalid|
+
 
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -38,15 +47,6 @@ $ChatInvite = $MadelineProto->messages->checkChatInvite(['hash' => 'string', ]);
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - messages.checkChatInvite
-* params - `{"hash": "string", }`
-
 
 
 ### As a user:
@@ -56,6 +56,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.checkChatInvite`
 Parameters:
 
 hash - Json encoded string
+
 
 
 

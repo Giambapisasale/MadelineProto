@@ -30,7 +30,7 @@ class RPCErrorException extends \Exception
             case 'USER_PRIVACY_RESTRICTED':$message = "The user's privacy settings do not allow you to do this"; break;
             case 'CHANNEL_PRIVATE':$message = "You haven't joined this channel/supergroup"; break;
             case 'FLOOD_WAIT_666':$message = 'Spooky af m8'; break;
-            case 'USER_IS_BOT':$message = "Bots can't send messages to themselves"; break;
+            case 'USER_IS_BOT':$message = "Bots can't send messages to other bots"; break;
             case 'BOT_METHOD_INVALID':$message = 'This method cannot be run by a bot'; break;
             case 'PHONE_CODE_EXPIRED': $message = 'The phone code you provided has expired, this may happen if it was sent to any chat on telegram (if the code is sent through a telegram chat (not the official account) to avoid it append or prepend to the code some chars)'; break;
             case 'USERNAME_INVALID': $message = 'The provided username is not valid'; break;
@@ -69,6 +69,12 @@ class RPCErrorException extends \Exception
             case -429:
             case 'PEER_FLOOD': $message = 'Too many requests'; break;
         }
+        if ($this->rpc === $message) {
+            $res = json_decode(@file_get_contents('https://rpc.pwrtelegram.xyz/?description_for='.$this->rpc), true);
+            if (isset($res['ok']) && $res['ok']) {
+                $message = $res['result'];
+            }
+        }
         parent::__construct($message, $code, $previous);
         $this->prettify_tl();
 
@@ -81,7 +87,7 @@ class RPCErrorException extends \Exception
                 break;
             }
         }
-        file_get_contents('https://rpc.pwrtelegram.xyz/?method='.$additional[0].'&code='.$code.'&error='.$this->rpc);
+        @file_get_contents('https://rpc.pwrtelegram.xyz/?method='.$additional[0].'&code='.$code.'&error='.$this->rpc);
         /*
         if (in_array($this->rpc, ['CHANNEL_PRIVATE', -404, -429, 'USERNAME_NOT_OCCUPIED', 'ACCESS_TOKEN_INVALID', 'AUTH_KEY_UNREGISTERED', 'SESSION_PASSWORD_NEEDED', 'PHONE_NUMBER_UNOCCUPIED', 'PEER_ID_INVALID', 'CHAT_ID_INVALID', 'USERNAME_INVALID', 'CHAT_WRITE_FORBIDDEN', 'CHAT_ADMIN_REQUIRED', 'PEER_FLOOD'])) {
             return;

@@ -9,12 +9,22 @@ description: messages.editChatTitle parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |chat\_id|[InputPeer](../types/InputPeer.md) | Yes|
 |title|[string](../types/string.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|NEED_CHAT_INVALID|The provided chat is invalid|
+
 
 ### Example:
 
@@ -57,7 +67,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.editChatTitle`
 Parameters:
 
 chat_id - Json encoded InputPeer
+
 title - Json encoded string
+
 
 
 

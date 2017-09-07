@@ -15,7 +15,7 @@ namespace danog\MadelineProto;
 /**
  * Manages all of the mtproto stuff.
  */
-class MTProto extends \Volatile
+class MTProto
 {
     use \danog\Serializable;
     use \danog\MadelineProto\MTProtoTools\AckHandler;
@@ -43,8 +43,10 @@ class MTProto extends \Volatile
     use \danog\MadelineProto\VoIP\AuthKeyHandler;
     use \danog\MadelineProto\Wrappers\DialogHandler;
     use \danog\MadelineProto\Wrappers\Login;
-
-    const V = 69;
+    /*
+        const V = 71;
+    */
+    const V = 72;
 
     const NOT_LOGGED_IN = 0;
     const WAITING_CODE = 1;
@@ -506,8 +508,8 @@ class MTProto extends \Volatile
                 ],
             ],
             'app_info' => [ // obtained in https://my.telegram.org
-                //'api_id'          => 65536,
-                //'api_hash'        => '4251a2777e179232705e2462706f4143',
+                //'api_id'          => 6,
+                //'api_hash'        => 'eb06d4abfb49dc3eeb1aeb98ae0f581e',
                 'device_model'    => $device_model,
                 'system_version'  => $system_version,
                 'app_version'     => 'Unicorn', // ðŸŒš
@@ -515,10 +517,10 @@ class MTProto extends \Volatile
                 'lang_code'       => 'en',
             ],
             'tl_schema'     => [ // TL scheme files
-                'layer'         => 70, // layer version
+                'layer'         => 71, // layer version
                 'src'           => [
                     'mtproto'      => __DIR__.'/TL_mtproto_v1.json', // mtproto TL scheme
-                    'telegram'     => __DIR__.'/TL_telegram_v70.tl', // telegram TL scheme
+                    'telegram'     => __DIR__.'/TL_telegram_v71.tl', // telegram TL scheme
                     'secret'       => __DIR__.'/TL_secret.tl', // secret chats TL scheme
                     'calls'        => __DIR__.'/TL_calls.tl', // calls TL scheme
                     //'td'           => __DIR__.'/TL_td.tl', // telegram-cli TL scheme
@@ -582,7 +584,7 @@ class MTProto extends \Volatile
         }
 
         if ($settings['app_info']['api_id'] < 20) {
-            $settings['connection_settings']['all']['protocol'] = 'obfuscated2';
+//            $settings['connection_settings']['all']['protocol'] = 'obfuscated2';
         }
         switch ($settings['logger']['logger_level']) {
             case 'ULTRA_VERBOSE': $settings['logger']['logger_level'] = 5; break;
@@ -615,6 +617,8 @@ class MTProto extends \Volatile
                 $socket->session_id = $this->random(8);
                 $socket->session_in_seq_no = 0;
                 $socket->session_out_seq_no = 0;
+                $socket->max_incoming_id = null;
+                $socket->max_outgoing_id = null;
             }
             if ($auth_key) {
                 $socket->temp_auth_key = null;

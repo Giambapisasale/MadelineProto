@@ -9,12 +9,15 @@ description: channels.getDialogs parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |offset|[int](../types/int.md) | Yes|
 |limit|[int](../types/int.md) | Yes|
 
 
 ### Return type: [messages\_Dialogs](../types/messages_Dialogs.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.getDialogs`
 Parameters:
 
 offset - Json encoded int
+
 limit - Json encoded int
+
 
 
 

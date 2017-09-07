@@ -12,7 +12,7 @@ Bots only. New incoming inline query
 ### Attributes:
 
 | Name     |    Type       | Required | Description |
-|----------|:-------------:|:--------:|------------:|
+|----------|---------------|----------|-------------|
 |id|[long](../types/long.md) | Yes|Unique query identifier|
 |sender\_user\_id|[int](../types/int.md) | Yes|Identifier of the user who sent the query|
 |user\_location|[location](../types/location.md) | Yes|User location, provided by the client, nullable|
@@ -22,27 +22,5 @@ Bots only. New incoming inline query
 
 
 ### Type: [Update](../types/Update.md)
-
-
-### Example:
-
-```
-$updateNewInlineQuery = ['_' => 'updateNewInlineQuery', 'id' => long, 'sender_user_id' => int, 'user_location' => location, 'query' => 'string', 'offset' => 'string'];
-```  
-
-[PWRTelegram](https://pwrtelegram.xyz) json-encoded version:
-
-```
-{"_": "updateNewInlineQuery", "id": long, "sender_user_id": int, "user_location": location, "query": "string", "offset": "string"}
-```
-
-
-Or, if you're into Lua:  
-
-
-```
-updateNewInlineQuery={_='updateNewInlineQuery', id=long, sender_user_id=int, user_location=location, query='string', offset='string'}
-
-```
 
 

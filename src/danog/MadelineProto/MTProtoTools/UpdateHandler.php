@@ -127,20 +127,20 @@ trait UpdateHandler
         }
     }
 
-    /*
-    public function get_msg_id($peer)
+    public function check_msg_id($message)
     {
-        $id = $this->get_info($peer)['bot_api_id'];
+        $peer_id = $this->get_info($message['to_id'])['bot_api_id'];
+        $message_id = $message['id'];
 
-        return isset($this->msg_ids[$id]) ? $this->msg_ids[$id] : false;
+        if (!isset($this->msg_ids[$peer_id]) || $message_id > $this->msg_ids[$peer_id]) {
+            $this->msg_ids[$peer_id] = $message_id;
+
+            return true;
+        }
+
+        return false;
     }
 
-    public function set_msg_id($peer, $msg_id)
-    {
-        $id = $this->get_info($peer)['bot_api_id'];
-        $this->msg_ids[$id] = $msg_id;
-    }
-    */
     public function get_channel_difference($channel)
     {
         if (!$this->settings['updates']['handle_updates']) {
@@ -152,6 +152,7 @@ trait UpdateHandler
             return;
         }
         $this->load_channel_state($channel)['sync_loading'] = true;
+
         try {
             $input = $this->get_info('channel#'.$channel);
             if (!isset($input['InputChannel'])) {
@@ -176,6 +177,7 @@ trait UpdateHandler
             if ($e->getMessage() === "You haven't joined this channel/supergroup") {
                 return false;
             }
+
             throw $e;
         }
         unset($input);
@@ -337,7 +339,7 @@ trait UpdateHandler
             $cur_state = &$this->load_channel_state($channel_id, (isset($update['pts']) ? $update['pts'] : 0) - (isset($update['pts_count']) ? $update['pts_count'] : 0));
         }
         /*
-        if ($cur_state['sync_loading'] && $this->in_array($update['_'], ['updateNewMessage', 'updateEditMessage', 'updateNewChannelMessage', 'updateEditChannelMessage'])) {
+        if ($cur_state['sync_loading'] && in_array($update['_'], ['updateNewMessage', 'updateEditMessage', 'updateNewChannelMessage', 'updateEditChannelMessage'])) {
             \danog\MadelineProto\Logger::log(['Sync loading, not handling update'], \danog\MadelineProto\Logger::NOTICE);
 
             return false;
@@ -379,7 +381,7 @@ trait UpdateHandler
         }
 
         if (isset($update['pts'])) {
-            if ($update['pts'] <= $cur_state['pts']) {
+            if ($update['pts'] < $cur_state['pts']) {
                 \danog\MadelineProto\Logger::log(['Duplicate update, channel id: '.$channel_id], \danog\MadelineProto\Logger::ERROR);
 
                 // return false;
@@ -394,10 +396,16 @@ trait UpdateHandler
 
                 return false;
             }
-//            if ($cur_state['pts'] < $update['pts']) {
-                \danog\MadelineProto\Logger::log(['Applying pts. current pts: '.$cur_state['pts'].', new pts: '.$update['pts'].', channel id: '.$channel_id], \danog\MadelineProto\Logger::VERBOSE);
+            if (isset($update['message']['id'], $update['message']['to_id'])) {
+                if (!$this->check_msg_id($update['message'])) {
+                    \danog\MadelineProto\Logger::log(['Duplicate update by message id, channel id: '.$channel_id], \danog\MadelineProto\Logger::ERROR);
+
+                    return false;
+                }
+            }
+
+            \danog\MadelineProto\Logger::log(['Applying pts. current pts: '.$cur_state['pts'].', new pts: '.$update['pts'].', channel id: '.$channel_id], \danog\MadelineProto\Logger::VERBOSE);
             $cur_state['pts'] = $update['pts'];
-//            }
 
             if ($channel_id === false && isset($options['date']) && $cur_state['date'] < $options['date']) {
                 $cur_state['date'] = $options['date'];
@@ -531,7 +539,7 @@ trait UpdateHandler
         if ($update['_'] === 'updateEncryption') {
             switch ($update['chat']['_']) {
                 case 'encryptedChatRequested':
-                if ($this->settings['secret_chats']['accept_chats'] === false || ($this->is_array($this->settings['secret_chats']['accept_chats']) && !$this->in_array($update['chat']['admin_id'], $this->settings['secret_chats']['accept_chats']))) {
+                if ($this->settings['secret_chats']['accept_chats'] === false || (is_array($this->settings['secret_chats']['accept_chats']) && !in_array($update['chat']['admin_id'], $this->settings['secret_chats']['accept_chats']))) {
                     return;
                 }
                 \danog\MadelineProto\Logger::log(['Accepting secret chat '.$update['chat']['id']], \danog\MadelineProto\Logger::NOTICE);
@@ -603,7 +611,7 @@ trait UpdateHandler
         curl_close($ch);
         \danog\MadelineProto\Logger::log(['Result of webhook query is '.$result], \danog\MadelineProto\Logger::NOTICE);
         $result = json_decode($result, true);
-        if ($this->is_array($result) && isset($result['method']) && $result['method'] != '' && is_string($result['method'])) {
+        if (is_array($result) && isset($result['method']) && $result['method'] != '' && is_string($result['method'])) {
             try {
                 \danog\MadelineProto\Logger::log(['Reverse webhook command returned', $this->method_call($result['method'], $result, ['datacenter' => $this->datacenter->curdc])]);
             } catch (\danog\MadelineProto\Exception $e) {

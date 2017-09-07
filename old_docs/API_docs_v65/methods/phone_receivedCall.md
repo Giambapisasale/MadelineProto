@@ -9,20 +9,27 @@ description: phone.receivedCall parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputPhoneCall](../types/InputPhoneCall.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CALL_PEER_INVALID|The provided call peer object is invalid|
+
 
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -38,15 +45,6 @@ $Bool = $MadelineProto->phone->receivedCall(['peer' => InputPhoneCall, ]);
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - phone.receivedCall
-* params - `{"peer": InputPhoneCall, }`
-
 
 
 ### As a user:
@@ -56,6 +54,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/phone.receivedCall`
 Parameters:
 
 peer - Json encoded InputPhoneCall
+
 
 
 

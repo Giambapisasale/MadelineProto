@@ -12,7 +12,7 @@ If not, see <http://www.gnu.org/licenses/>.
 
 namespace danog\MadelineProto\TL;
 
-class TLMethod extends \Volatile
+class TLMethod
 {
     use \danog\Serializable;
     use \danog\MadelineProto\Tools;
@@ -33,7 +33,7 @@ class TLMethod extends \Volatile
 
         $namespace = explode('.', $json_dict['method']);
         if (isset($namespace[1])) {
-            $this->method_namespace[$namespace[1]] = $namespace[0];
+            $this->method_namespace[] = [$namespace[0] => $namespace[1]];
         }
 
         $this->parse_params($json_dict['id']);
@@ -44,7 +44,7 @@ class TLMethod extends \Volatile
         if (isset($this->by_id[$id])) {
             $method = $this->by_id[$id];
             $method['id'] = $id;
-            $method['params'] = $this->array_cast_recursive($method['params']);
+            $method['params'] = $method['params'];
 
             return $method;
         }
@@ -57,7 +57,7 @@ class TLMethod extends \Volatile
         if (isset($this->by_method[$method_name])) {
             $method = $this->by_id[$this->by_method[$method_name]];
             $method['id'] = $this->by_method[$method_name];
-            $method['params'] = $this->array_cast_recursive($method['params']);
+            $method['params'] = $method['params'];
 
             return $method;
         }

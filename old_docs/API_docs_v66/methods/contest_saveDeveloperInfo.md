@@ -9,7 +9,7 @@ description: contest.saveDeveloperInfo parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |vk\_id|[int](../types/int.md) | Yes|
 |name|[string](../types/string.md) | Yes|
 |phone\_number|[string](../types/string.md) | Yes|
@@ -18,6 +18,9 @@ description: contest.saveDeveloperInfo parameters, return type and example
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -60,10 +63,15 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/contest.saveDeveloperInfo`
 Parameters:
 
 vk_id - Json encoded int
+
 name - Json encoded string
+
 phone_number - Json encoded string
+
 age - Json encoded int
+
 city - Json encoded string
+
 
 
 

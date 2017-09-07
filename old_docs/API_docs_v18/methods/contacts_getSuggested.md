@@ -9,11 +9,14 @@ description: contacts.getSuggested parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |limit|[int](../types/int.md) | Yes|
 
 
 ### Return type: [contacts\_Suggested](../types/contacts_Suggested.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/contacts.getSuggested`
 Parameters:
 
 limit - Json encoded int
+
 
 
 

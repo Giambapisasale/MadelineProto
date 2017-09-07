@@ -9,12 +9,15 @@ description: messages.deactivateChat parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |chat\_id|[InputPeer](../types/InputPeer.md) | Yes|
 |enabled|[Bool](../types/Bool.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.deactivateChat`
 Parameters:
 
 chat_id - Json encoded InputPeer
+
 enabled - Json encoded Bool
+
 
 
 

@@ -9,20 +9,20 @@ description: account.getPasswordSettings parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |current\_password\_hash|[bytes](../types/bytes.md) | Yes|
 
 
 ### Return type: [account\_PasswordSettings](../types/account_PasswordSettings.md)
+
+### Can bots use this method: **NO**
+
 
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -38,15 +38,6 @@ $account_PasswordSettings = $MadelineProto->account->getPasswordSettings(['curre
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - account.getPasswordSettings
-* params - `{"current_password_hash": "bytes", }`
-
 
 
 ### As a user:
@@ -56,6 +47,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/account.getPasswordSettings`
 Parameters:
 
 current_password_hash - Json encoded bytes
+
 
 
 

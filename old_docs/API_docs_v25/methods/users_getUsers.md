@@ -9,11 +9,22 @@ description: users.getUsers parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |id|Array of [InputUser](../types/InputUser.md) | Yes|
 
 
 ### Return type: [Vector\_of\_User](../types/User.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|NEED_MEMBER_INVALID|The provided member is invalid|
+|SESSION_PASSWORD_NEEDED|2FA is enabled, use a password to login|
+
 
 ### Example:
 
@@ -56,6 +67,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/users.getUsers`
 Parameters:
 
 id - Json encoded  array of InputUser
+
 
 
 

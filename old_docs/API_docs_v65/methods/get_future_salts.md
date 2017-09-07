@@ -9,11 +9,14 @@ description: get_future_salts parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |num|[int](../types/int.md) | Yes|
 
 
 ### Return type: [FutureSalts](../types/FutureSalts.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/get_future_salts`
 Parameters:
 
 num - Json encoded int
+
 
 
 

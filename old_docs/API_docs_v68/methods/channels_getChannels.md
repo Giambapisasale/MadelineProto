@@ -9,11 +9,21 @@ description: channels.getChannels parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |id|Array of [InputChannel](../types/InputChannel.md) | Yes|
 
 
 ### Return type: [messages\_Chats](../types/messages_Chats.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|NEED_CHAT_INVALID|The provided chat is invalid|
+
 
 ### Example:
 
@@ -56,6 +66,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.getChannels`
 Parameters:
 
 id - Json encoded  array of InputChannel
+
 
 
 

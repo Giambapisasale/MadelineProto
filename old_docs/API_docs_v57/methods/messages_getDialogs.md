@@ -9,7 +9,7 @@ description: messages.getDialogs parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |offset\_date|[int](../types/int.md) | Yes|
 |offset\_id|[int](../types/int.md) | Yes|
 |offset\_peer|[InputPeer](../types/InputPeer.md) | Yes|
@@ -18,14 +18,22 @@ description: messages.getDialogs parameters, return type and example
 
 ### Return type: [messages\_Dialogs](../types/messages_Dialogs.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|OFFSET_PEER_ID_INVALID|The provided offset peer is invalid|
+|SESSION_PASSWORD_NEEDED|2FA is enabled, use a password to login|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -41,15 +49,6 @@ $messages_Dialogs = $MadelineProto->messages->getDialogs(['offset_date' => int, 
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - messages.getDialogs
-* params - `{"offset_date": int, "offset_id": int, "offset_peer": InputPeer, "limit": int, }`
-
 
 
 ### As a user:
@@ -59,9 +58,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getDialogs`
 Parameters:
 
 offset_date - Json encoded int
+
 offset_id - Json encoded int
+
 offset_peer - Json encoded InputPeer
+
 limit - Json encoded int
+
 
 
 

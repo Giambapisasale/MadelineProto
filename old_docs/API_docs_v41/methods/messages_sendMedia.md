@@ -9,7 +9,7 @@ description: messages.sendMedia parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |broadcast|[Bool](../types/Bool.md) | Optional|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |reply\_to\_msg\_id|[int](../types/int.md) | Optional|
@@ -18,6 +18,23 @@ description: messages.sendMedia parameters, return type and example
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHAT_WRITE_FORBIDDEN|You can't write in this chat|
+|FILE_PARTS_INVALID|The number of file parts is invalid|
+|MEDIA_CAPTION_TOO_LONG|The caption is too long|
+|MEDIA_EMPTY|The provided media object is invalid|
+|PEER_ID_INVALID|The provided peer id is invalid|
+|PHOTO_EXT_INVALID|The extension of the photo is invalid|
+|STORAGE_CHECK_FAILED|Server storage check failed|
+|WEBPAGE_CURL_FAILED|Failure while fetching the webpage with cURL|
+
 
 ### Example:
 
@@ -60,10 +77,15 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.sendMedia`
 Parameters:
 
 broadcast - Json encoded Bool
+
 peer - Json encoded InputPeer
+
 reply_to_msg_id - Json encoded int
+
 media - Json encoded InputMedia
+
 reply_markup - Json encoded ReplyMarkup
+
 
 
 

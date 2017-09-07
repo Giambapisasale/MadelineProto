@@ -9,12 +9,15 @@ description: geochats.getRecents parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |offset|[int](../types/int.md) | Yes|
 |limit|[int](../types/int.md) | Yes|
 
 
 ### Return type: [geochats\_Messages](../types/geochats_Messages.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/geochats.getRecents`
 Parameters:
 
 offset - Json encoded int
+
 limit - Json encoded int
+
 
 
 

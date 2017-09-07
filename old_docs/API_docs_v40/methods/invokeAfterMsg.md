@@ -9,12 +9,15 @@ description: invokeAfterMsg parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |msg\_id|[long](../types/long.md) | Yes|
 |query|[!X](../types/!X.md) | Yes|
 
 
 ### Return type: [X](../types/X.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/invokeAfterMsg`
 Parameters:
 
 msg_id - Json encoded long
+
 query - Json encoded !X
+
 
 
 

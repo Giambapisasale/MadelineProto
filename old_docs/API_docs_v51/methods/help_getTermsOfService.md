@@ -9,20 +9,20 @@ description: help.getTermsOfService parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |lang\_code|[string](../types/string.md) | Yes|
 
 
 ### Return type: [help\_TermsOfService](../types/help_TermsOfService.md)
+
+### Can bots use this method: **NO**
+
 
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -38,15 +38,6 @@ $help_TermsOfService = $MadelineProto->help->getTermsOfService(['lang_code' => '
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - help.getTermsOfService
-* params - `{"lang_code": "string", }`
-
 
 
 ### As a user:
@@ -56,6 +47,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/help.getTermsOfService`
 Parameters:
 
 lang_code - Json encoded string
+
 
 
 

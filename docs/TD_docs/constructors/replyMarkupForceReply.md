@@ -12,33 +12,11 @@ Instruct clients to force reply to this message
 ### Attributes:
 
 | Name     |    Type       | Required | Description |
-|----------|:-------------:|:--------:|------------:|
+|----------|---------------|----------|-------------|
 |personal|[Bool](../types/Bool.md) | Yes|Forced reply is used automatically only for mentioned users or replied to chat user, for incoming messages it is true if and only if forced reply needs to be automatically showed to the current user|
 
 
 
 ### Type: [ReplyMarkup](../types/ReplyMarkup.md)
-
-
-### Example:
-
-```
-$replyMarkupForceReply = ['_' => 'replyMarkupForceReply', 'personal' => Bool];
-```  
-
-[PWRTelegram](https://pwrtelegram.xyz) json-encoded version:
-
-```
-{"_": "replyMarkupForceReply", "personal": Bool}
-```
-
-
-Or, if you're into Lua:  
-
-
-```
-replyMarkupForceReply={_='replyMarkupForceReply', personal=Bool}
-
-```
 
 

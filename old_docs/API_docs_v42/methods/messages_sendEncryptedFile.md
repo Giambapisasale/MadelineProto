@@ -9,13 +9,23 @@ description: messages.sendEncryptedFile parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputEncryptedChat](../types/InputEncryptedChat.md) | Yes|
 |message|[DecryptedMessage](../types/DecryptedMessage.md) | Yes|
 |file|[InputEncryptedFile](../types/InputEncryptedFile.md) | Yes|
 
 
 ### Return type: [messages\_SentEncryptedMessage](../types/messages_SentEncryptedMessage.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MSG_WAIT_FAILED|A waiting call returned an error|
+
 
 ### Example:
 
@@ -58,8 +68,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.sendEncryptedFile`
 Parameters:
 
 peer - Json encoded InputEncryptedChat
+
 message - Json encoded DecryptedMessage
+
 file - Json encoded InputEncryptedFile
+
 
 
 

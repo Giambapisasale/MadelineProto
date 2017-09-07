@@ -9,7 +9,7 @@ description: payments.sendPaymentForm parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |msg\_id|[int](../types/int.md) | Yes|
 |requested\_info\_id|[string](../types/string.md) | Optional|
 |shipping\_option\_id|[string](../types/string.md) | Optional|
@@ -18,14 +18,21 @@ description: payments.sendPaymentForm parameters, return type and example
 
 ### Return type: [payments\_PaymentResult](../types/payments_PaymentResult.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MESSAGE_ID_INVALID|The provided message id is invalid|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -41,15 +48,6 @@ $payments_PaymentResult = $MadelineProto->payments->sendPaymentForm(['msg_id' =>
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - payments.sendPaymentForm
-* params - `{"msg_id": int, "requested_info_id": "string", "shipping_option_id": "string", "credentials": InputPaymentCredentials, }`
-
 
 
 ### As a user:
@@ -59,9 +57,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/payments.sendPaymentForm`
 Parameters:
 
 msg_id - Json encoded int
+
 requested_info_id - Json encoded string
+
 shipping_option_id - Json encoded string
+
 credentials - Json encoded InputPaymentCredentials
+
 
 
 

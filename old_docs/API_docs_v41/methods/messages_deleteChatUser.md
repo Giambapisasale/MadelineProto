@@ -9,12 +9,24 @@ description: messages.deleteChatUser parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |chat\_id|[InputPeer](../types/InputPeer.md) | Yes|
 |user\_id|[InputUser](../types/InputUser.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHAT_ID_INVALID|The provided chat id is invalid|
+|PEER_ID_INVALID|The provided peer id is invalid|
+|USER_NOT_PARTICIPANT|You're not a member of this supergroup/channel|
+
 
 ### Example:
 
@@ -57,7 +69,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.deleteChatUser`
 Parameters:
 
 chat_id - Json encoded InputPeer
+
 user_id - Json encoded InputUser
+
 
 
 

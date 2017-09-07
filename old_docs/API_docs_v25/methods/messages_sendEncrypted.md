@@ -9,12 +9,23 @@ description: messages.sendEncrypted parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputEncryptedChat](../types/InputEncryptedChat.md) | Yes|
 |message|[DecryptedMessage](../types/DecryptedMessage.md) | Yes|
 
 
 ### Return type: [messages\_SentEncryptedMessage](../types/messages_SentEncryptedMessage.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|DATA_INVALID|Encrypted data invalid|
+|MSG_WAIT_FAILED|A waiting call returned an error|
+
 
 ### Example:
 
@@ -57,7 +68,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.sendEncrypted`
 Parameters:
 
 peer - Json encoded InputEncryptedChat
+
 message - Json encoded DecryptedMessage
+
 
 
 

@@ -9,21 +9,28 @@ description: channels.exportMessageLink parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |id|[int](../types/int.md) | Yes|
 
 
 ### Return type: [ExportedMessageLink](../types/ExportedMessageLink.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHANNEL_INVALID|The provided channel is invalid|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -39,15 +46,6 @@ $ExportedMessageLink = $MadelineProto->channels->exportMessageLink(['channel' =>
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - channels.exportMessageLink
-* params - `{"channel": InputChannel, "id": int, }`
-
 
 
 ### As a user:
@@ -57,7 +55,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.exportMessageLink`
 Parameters:
 
 channel - Json encoded InputChannel
+
 id - Json encoded int
+
 
 
 

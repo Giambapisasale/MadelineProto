@@ -9,7 +9,7 @@ description: channels.getImportantHistory parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |offset\_id|[int](../types/int.md) | Yes|
 |offset\_date|[int](../types/int.md) | Yes|
@@ -20,6 +20,9 @@ description: channels.getImportantHistory parameters, return type and example
 
 
 ### Return type: [messages\_Messages](../types/messages_Messages.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -62,12 +65,19 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.getImportantHistory`
 Parameters:
 
 channel - Json encoded InputChannel
+
 offset_id - Json encoded int
+
 offset_date - Json encoded int
+
 add_offset - Json encoded int
+
 limit - Json encoded int
+
 max_id - Json encoded int
+
 min_id - Json encoded int
+
 
 
 

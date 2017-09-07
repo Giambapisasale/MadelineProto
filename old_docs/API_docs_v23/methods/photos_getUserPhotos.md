@@ -9,7 +9,7 @@ description: photos.getUserPhotos parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |user\_id|[InputUser](../types/InputUser.md) | Yes|
 |offset|[int](../types/int.md) | Yes|
 |max\_id|[int](../types/int.md) | Yes|
@@ -17,6 +17,17 @@ description: photos.getUserPhotos parameters, return type and example
 
 
 ### Return type: [photos\_Photos](../types/photos_Photos.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MAX_ID_INVALID|The provided max ID is invalid|
+|USER_ID_INVALID|The provided user ID is invalid|
+
 
 ### Example:
 
@@ -59,9 +70,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/photos.getUserPhotos`
 Parameters:
 
 user_id - Json encoded InputUser
+
 offset - Json encoded int
+
 max_id - Json encoded int
+
 limit - Json encoded int
+
 
 
 

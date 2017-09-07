@@ -9,11 +9,14 @@ description: messages.getUnusedStickers parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |limit|[int](../types/int.md) | Yes|
 
 
 ### Return type: [Vector\_of\_StickerSetCovered](../types/StickerSetCovered.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -56,6 +59,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getUnusedStickers`
 Parameters:
 
 limit - Json encoded int
+
 
 
 

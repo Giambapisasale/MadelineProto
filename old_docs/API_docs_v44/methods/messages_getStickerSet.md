@@ -9,11 +9,21 @@ description: messages.getStickerSet parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |stickerset|[InputStickerSet](../types/InputStickerSet.md) | Yes|
 
 
 ### Return type: [messages\_StickerSet](../types/messages_StickerSet.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|STICKERSET_INVALID|The provided sticker set is invalid|
+
 
 ### Example:
 
@@ -56,6 +66,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getStickerSet`
 Parameters:
 
 stickerset - Json encoded InputStickerSet
+
 
 
 

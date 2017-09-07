@@ -9,12 +9,15 @@ description: auth.sendCall parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |phone\_number|[string](../types/string.md) | Yes|
 |phone\_code\_hash|[string](../types/string.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/auth.sendCall`
 Parameters:
 
 phone_number - Json encoded string
+
 phone_code_hash - Json encoded string
+
 
 
 

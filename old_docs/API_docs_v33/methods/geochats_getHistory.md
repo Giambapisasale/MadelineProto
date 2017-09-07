@@ -9,7 +9,7 @@ description: geochats.getHistory parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputGeoChat](../types/InputGeoChat.md) | Yes|
 |offset|[int](../types/int.md) | Yes|
 |max\_id|[int](../types/int.md) | Yes|
@@ -17,6 +17,9 @@ description: geochats.getHistory parameters, return type and example
 
 
 ### Return type: [geochats\_Messages](../types/geochats_Messages.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -59,9 +62,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/geochats.getHistory`
 Parameters:
 
 peer - Json encoded InputGeoChat
+
 offset - Json encoded int
+
 max_id - Json encoded int
+
 limit - Json encoded int
+
 
 
 

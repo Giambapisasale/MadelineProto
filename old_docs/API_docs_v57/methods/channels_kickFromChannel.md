@@ -9,13 +9,16 @@ description: channels.kickFromChannel parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |channel|[InputChannel](../types/InputChannel.md) | Yes|
 |user\_id|[InputUser](../types/InputUser.md) | Yes|
 |kicked|[Bool](../types/Bool.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -58,8 +61,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/channels.kickFromChannel`
 Parameters:
 
 channel - Json encoded InputChannel
+
 user_id - Json encoded InputUser
+
 kicked - Json encoded Bool
+
 
 
 

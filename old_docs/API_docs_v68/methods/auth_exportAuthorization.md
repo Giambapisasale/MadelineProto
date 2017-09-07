@@ -9,11 +9,21 @@ description: auth.exportAuthorization parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |dc\_id|[int](../types/int.md) | Yes|
 
 
 ### Return type: [auth\_ExportedAuthorization](../types/auth_ExportedAuthorization.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|DC_ID_INVALID|The provided DC ID is invalid|
+
 
 ### Example:
 
@@ -56,6 +66,7 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/auth.exportAuthorization`
 Parameters:
 
 dc_id - Json encoded int
+
 
 
 

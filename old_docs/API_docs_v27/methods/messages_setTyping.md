@@ -9,12 +9,26 @@ description: messages.setTyping parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |action|[SendMessageAction](../types/SendMessageAction.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|CHANNEL_INVALID|The provided channel is invalid|
+|CHANNEL_PRIVATE|You haven't joined this channel/supergroup|
+|CHAT_ID_INVALID|The provided chat id is invalid|
+|CHAT_WRITE_FORBIDDEN|You can't write in this chat|
+|PEER_ID_INVALID|The provided peer id is invalid|
+
 
 ### Example:
 
@@ -57,7 +71,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.setTyping`
 Parameters:
 
 peer - Json encoded InputPeer
+
 action - Json encoded SendMessageAction
+
 
 
 

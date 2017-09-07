@@ -9,13 +9,23 @@ description: messages.getDocumentByHash parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |sha256|[bytes](../types/bytes.md) | Yes|
 |size|[int](../types/int.md) | Yes|
 |mime\_type|[string](../types/string.md) | Yes|
 
 
 ### Return type: [Document](../types/Document.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|SHA256_HASH_INVALID|The provided SHA256 hash is invalid|
+
 
 ### Example:
 
@@ -58,8 +68,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.getDocumentByHash`
 Parameters:
 
 sha256 - Json encoded bytes
+
 size - Json encoded int
+
 mime_type - Json encoded string
+
 
 
 

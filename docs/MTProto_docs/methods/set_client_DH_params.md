@@ -9,13 +9,16 @@ description: set_client_DH_params parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |nonce|[int128](../types/int128.md) | Yes|
 |server\_nonce|[int128](../types/int128.md) | Yes|
 |encrypted\_data|[bytes](../types/bytes.md) | Yes|
 
 
 ### Return type: [Set\_client\_DH\_params\_answer](../types/Set_client_DH_params_answer.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -58,8 +61,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/set_client_DH_params`
 Parameters:
 
 nonce - Json encoded int128
+
 server_nonce - Json encoded int128
+
 encrypted_data - Json encoded bytes
+
 
 
 

@@ -9,7 +9,7 @@ description: geochats.createGeoChat parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |title|[string](../types/string.md) | Yes|
 |geo\_point|[InputGeoPoint](../types/InputGeoPoint.md) | Yes|
 |address|[string](../types/string.md) | Yes|
@@ -17,6 +17,9 @@ description: geochats.createGeoChat parameters, return type and example
 
 
 ### Return type: [geochats\_StatedMessage](../types/geochats_StatedMessage.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -59,9 +62,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/geochats.createGeoChat`
 Parameters:
 
 title - Json encoded string
+
 geo_point - Json encoded InputGeoPoint
+
 address - Json encoded string
+
 venue - Json encoded string
+
 
 
 

@@ -9,12 +9,23 @@ description: stickers.changeStickerPosition parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |sticker|[InputDocument](../types/InputDocument.md) | Yes|
 |position|[int](../types/int.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|BOT_MISSING|This method can only be run by a bot|
+|STICKER_INVALID|The provided sticker is invalid|
+
 
 ### Example:
 
@@ -57,7 +68,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/stickers.changeStickerPositio
 Parameters:
 
 sticker - Json encoded InputDocument
+
 position - Json encoded int
+
 
 
 

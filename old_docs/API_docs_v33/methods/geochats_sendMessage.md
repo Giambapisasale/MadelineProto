@@ -9,12 +9,15 @@ description: geochats.sendMessage parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputGeoChat](../types/InputGeoChat.md) | Yes|
 |message|[string](../types/string.md) | Yes|
 
 
 ### Return type: [geochats\_StatedMessage](../types/geochats_StatedMessage.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/geochats.sendMessage`
 Parameters:
 
 peer - Json encoded InputGeoChat
+
 message - Json encoded string
+
 
 
 

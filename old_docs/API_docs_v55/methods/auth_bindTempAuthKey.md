@@ -9,7 +9,7 @@ description: auth.bindTempAuthKey parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |perm\_auth\_key\_id|[long](../types/long.md) | Yes|
 |nonce|[long](../types/long.md) | Yes|
 |expires\_at|[int](../types/int.md) | Yes|
@@ -17,6 +17,17 @@ description: auth.bindTempAuthKey parameters, return type and example
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|ENCRYPTED_MESSAGE_INVALID|Encrypted message invalid|
+|INPUT_REQUEST_TOO_LONG|The request is too big|
+
 
 ### Example:
 
@@ -59,9 +70,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/auth.bindTempAuthKey`
 Parameters:
 
 perm_auth_key_id - Json encoded long
+
 nonce - Json encoded long
+
 expires_at - Json encoded int
+
 encrypted_message - Json encoded bytes
+
 
 
 

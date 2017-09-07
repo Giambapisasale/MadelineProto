@@ -9,13 +9,23 @@ description: messages.setBotPrecheckoutResults parameters, return type and examp
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |success|[Bool](../types/Bool.md) | Optional|
 |query\_id|[long](../types/long.md) | Yes|
 |error|[string](../types/string.md) | Optional|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|ERROR_TEXT_EMPTY|The provided error message is empty|
+
 
 ### Example:
 
@@ -58,8 +68,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.setBotPrecheckoutRes
 Parameters:
 
 success - Json encoded Bool
+
 query_id - Json encoded long
+
 error - Json encoded string
+
 
 
 

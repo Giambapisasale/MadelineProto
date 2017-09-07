@@ -9,7 +9,7 @@ description: upload.getWebFile parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |location|[InputWebFileLocation](../types/InputWebFileLocation.md) | Yes|
 |offset|[int](../types/int.md) | Yes|
 |limit|[int](../types/int.md) | Yes|
@@ -17,14 +17,21 @@ description: upload.getWebFile parameters, return type and example
 
 ### Return type: [upload\_WebFile](../types/upload_WebFile.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|LOCATION_INVALID|The provided location is invalid|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -40,15 +47,6 @@ $upload_WebFile = $MadelineProto->upload->getWebFile(['location' => InputWebFile
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - upload.getWebFile
-* params - `{"location": InputWebFileLocation, "offset": int, "limit": int, }`
-
 
 
 ### As a user:
@@ -58,8 +56,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/upload.getWebFile`
 Parameters:
 
 location - Json encoded InputWebFileLocation
+
 offset - Json encoded int
+
 limit - Json encoded int
+
 
 
 

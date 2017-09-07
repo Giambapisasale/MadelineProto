@@ -9,21 +9,28 @@ description: messages.installStickerSet parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |stickerset|[InputStickerSet](../types/InputStickerSet.md) | Yes|
 |archived|[Bool](../types/Bool.md) | Yes|
 
 
 ### Return type: [messages\_StickerSetInstallResult](../types/messages_StickerSetInstallResult.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|STICKERSET_INVALID|The provided sticker set is invalid|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -39,15 +46,6 @@ $messages_StickerSetInstallResult = $MadelineProto->messages->installStickerSet(
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - messages.installStickerSet
-* params - `{"stickerset": InputStickerSet, "archived": Bool, }`
-
 
 
 ### As a user:
@@ -57,7 +55,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.installStickerSet`
 Parameters:
 
 stickerset - Json encoded InputStickerSet
+
 archived - Json encoded Bool
+
 
 
 

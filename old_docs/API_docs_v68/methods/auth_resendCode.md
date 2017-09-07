@@ -9,21 +9,28 @@ description: auth.resendCode parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |phone\_number|[string](../types/string.md) | Yes|
 |phone\_code\_hash|[string](../types/string.md) | Yes|
 
 
 ### Return type: [auth\_SentCode](../types/auth_SentCode.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|PHONE_NUMBER_INVALID|The phone number is invalid|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -39,15 +46,6 @@ $auth_SentCode = $MadelineProto->auth->resendCode(['phone_number' => 'string', '
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - auth.resendCode
-* params - `{"phone_number": "string", "phone_code_hash": "string", }`
-
 
 
 ### As a user:
@@ -57,7 +55,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/auth.resendCode`
 Parameters:
 
 phone_number - Json encoded string
+
 phone_code_hash - Json encoded string
+
 
 
 

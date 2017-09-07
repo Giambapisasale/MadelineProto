@@ -9,7 +9,7 @@ description: geochats.search parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputGeoChat](../types/InputGeoChat.md) | Yes|
 |q|[string](../types/string.md) | Yes|
 |filter|[MessagesFilter](../types/MessagesFilter.md) | Yes|
@@ -21,6 +21,9 @@ description: geochats.search parameters, return type and example
 
 
 ### Return type: [geochats\_Messages](../types/geochats_Messages.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -63,13 +66,21 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/geochats.search`
 Parameters:
 
 peer - Json encoded InputGeoChat
+
 q - Json encoded string
+
 filter - Json encoded MessagesFilter
+
 min_date - Json encoded int
+
 max_date - Json encoded int
+
 offset - Json encoded int
+
 max_id - Json encoded int
+
 limit - Json encoded int
+
 
 
 

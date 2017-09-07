@@ -9,12 +9,15 @@ description: messages.deleteChannelMessages parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |id|Array of [int](../types/int.md) | Yes|
 
 
 ### Return type: [messages\_AffectedMessages](../types/messages_AffectedMessages.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.deleteChannelMessage
 Parameters:
 
 peer - Json encoded InputPeer
+
 id - Json encoded  array of int
+
 
 
 

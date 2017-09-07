@@ -9,12 +9,23 @@ description: messages.forwardMessage parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |peer|[InputPeer](../types/InputPeer.md) | Yes|
 |id|[int](../types/int.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MESSAGE_ID_INVALID|The provided message id is invalid|
+|PEER_ID_INVALID|The provided peer id is invalid|
+
 
 ### Example:
 
@@ -57,7 +68,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.forwardMessage`
 Parameters:
 
 peer - Json encoded InputPeer
+
 id - Json encoded int
+
 
 
 

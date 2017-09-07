@@ -9,21 +9,28 @@ description: auth.sendInvites parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |phone\_numbers|Array of [string](../types/string.md) | Yes|
 |message|[string](../types/string.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
 
+### Can bots use this method: **NO**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MESSAGE_EMPTY|The provided message is empty|
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -39,15 +46,6 @@ $Bool = $MadelineProto->auth->sendInvites(['phone_numbers' => ['string'], 'messa
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - auth.sendInvites
-* params - `{"phone_numbers": ["string"], "message": "string", }`
-
 
 
 ### As a user:
@@ -57,7 +55,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/auth.sendInvites`
 Parameters:
 
 phone_numbers - Json encoded  array of string
+
 message - Json encoded string
+
 
 
 

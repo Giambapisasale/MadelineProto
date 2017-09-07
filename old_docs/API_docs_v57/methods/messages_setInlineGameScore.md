@@ -9,7 +9,7 @@ description: messages.setInlineGameScore parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |edit\_message|[Bool](../types/Bool.md) | Optional|
 |id|[InputBotInlineMessageID](../types/InputBotInlineMessageID.md) | Yes|
 |user\_id|[InputUser](../types/InputUser.md) | Yes|
@@ -17,6 +17,17 @@ description: messages.setInlineGameScore parameters, return type and example
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
+
+### Errors this method can return:
+
+| Error    | Description   |
+|----------|---------------|
+|MESSAGE_ID_INVALID|The provided message id is invalid|
+|USER_BOT_REQUIRED|This method can only be called by a bot|
+
 
 ### Example:
 
@@ -59,9 +70,13 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.setInlineGameScore`
 Parameters:
 
 edit_message - Json encoded Bool
+
 id - Json encoded InputBotInlineMessageID
+
 user_id - Json encoded InputUser
+
 score - Json encoded int
+
 
 
 

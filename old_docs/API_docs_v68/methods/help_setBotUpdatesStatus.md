@@ -9,12 +9,15 @@ description: help.setBotUpdatesStatus parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |pending\_updates\_count|[int](../types/int.md) | Yes|
 |message|[string](../types/string.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -57,7 +60,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/help.setBotUpdatesStatus`
 Parameters:
 
 pending_updates_count - Json encoded int
+
 message - Json encoded string
+
 
 
 

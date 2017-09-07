@@ -9,21 +9,21 @@ description: messages.reorderStickerSets parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |masks|[Bool](../types/Bool.md) | Optional|
 |order|Array of [long](../types/long.md) | Yes|
 
 
 ### Return type: [Bool](../types/Bool.md)
 
+### Can bots use this method: **NO**
+
+
 ### Example:
 
 
 ```
 $MadelineProto = new \danog\MadelineProto\API();
-if (isset($token)) { // Login as a bot
-    $MadelineProto->bot_login($token);
-}
 if (isset($number)) { // Login as a user
     $sentCode = $MadelineProto->phone_login($number);
     echo 'Enter the code you received: ';
@@ -39,15 +39,6 @@ $Bool = $MadelineProto->messages->reorderStickerSets(['masks' => Bool, 'order' =
 
 Or, if you're using the [PWRTelegram HTTP API](https://pwrtelegram.xyz):
 
-### As a bot:
-
-POST/GET to `https://api.pwrtelegram.xyz/botTOKEN/madeline`
-
-Parameters:
-
-* method - messages.reorderStickerSets
-* params - `{"masks": Bool, "order": [long], }`
-
 
 
 ### As a user:
@@ -57,7 +48,9 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.reorderStickerSets`
 Parameters:
 
 masks - Json encoded Bool
+
 order - Json encoded  array of long
+
 
 
 

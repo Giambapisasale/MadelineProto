@@ -9,13 +9,16 @@ description: messages.sendBroadcast parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |contacts|Array of [InputUser](../types/InputUser.md) | Yes|
 |message|[string](../types/string.md) | Yes|
 |media|[InputMedia](../types/InputMedia.md) | Yes|
 
 
 ### Return type: [Updates](../types/Updates.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -58,8 +61,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/messages.sendBroadcast`
 Parameters:
 
 contacts - Json encoded  array of InputUser
+
 message - Json encoded string
+
 media - Json encoded InputMedia
+
 
 
 

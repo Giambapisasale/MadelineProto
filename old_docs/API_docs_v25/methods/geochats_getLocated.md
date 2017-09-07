@@ -9,13 +9,16 @@ description: geochats.getLocated parameters, return type and example
 ### Parameters:
 
 | Name     |    Type       | Required |
-|----------|:-------------:|---------:|
+|----------|---------------|----------|
 |geo\_point|[InputGeoPoint](../types/InputGeoPoint.md) | Yes|
 |radius|[int](../types/int.md) | Yes|
 |limit|[int](../types/int.md) | Yes|
 
 
 ### Return type: [geochats\_Located](../types/geochats_Located.md)
+
+### Can bots use this method: **YES**
+
 
 ### Example:
 
@@ -58,8 +61,11 @@ POST/GET to `https://api.pwrtelegram.xyz/userTOKEN/geochats.getLocated`
 Parameters:
 
 geo_point - Json encoded InputGeoPoint
+
 radius - Json encoded int
+
 limit - Json encoded int
+
 
 
 
