@@ -16,31 +16,38 @@ trait DialogHandler
 {
     public function get_dialogs($force = true)
     {
-        if (!isset($this->dialog_params['offset_date']) || $force || is_null($this->dialog_params['offset_date'])) {
+        if ($force ||
+            !isset($this->dialog_params['offset_date']) || is_null($this->dialog_params['offset_date']) ||
+            !isset($this->dialog_params['offset_id']) || is_null($this->dialog_params['offset_id']) ||
+            !isset($this->dialog_params['offset_peer']) || is_null($this->dialog_params['offset_peer'])
+        ) {
             $this->dialog_params = ['limit' => 0, 'offset_date' => 0, 'offset_id' => 0, 'offset_peer' =>  ['_' => 'inputPeerEmpty'], 'count' => 0];
         }
         $this->updates_state['sync_loading'] = true;
         $res = ['dialogs' => [0], 'count' => 1];
         $datacenter = $this->datacenter->curdc;
         $peers = [];
-        while ($this->dialog_params['count'] < $res['count']) {
-            \danog\MadelineProto\Logger::log(['Getting dialogs...']);
-            $res = $this->method_call('messages.getDialogs', $this->dialog_params, ['datacenter' => $datacenter, 'FloodWaitLimit' => 100]);
-            foreach ($res['dialogs'] as $dialog) {
-                if (!in_array($dialog['peer'], $peers)) {
-                    $peers[] = $dialog['peer'];
+
+        try {
+            while ($this->dialog_params['count'] < $res['count']) {
+                \danog\MadelineProto\Logger::log([\danog\MadelineProto\Lang::$current_lang['getting_dialogs']]);
+                $res = $this->method_call('messages.getDialogs', $this->dialog_params, ['datacenter' => $datacenter, 'FloodWaitLimit' => 100]);
+                foreach ($res['dialogs'] as $dialog) {
+                    if (!in_array($dialog['peer'], $peers)) {
+                        $peers[] = $dialog['peer'];
+                    }
+                }
+                $this->dialog_params['count'] += count($res['dialogs']);
+                $this->dialog_params['offset_date'] = end($res['messages'])['date'];
+                $this->dialog_params['offset_peer'] = end($res['dialogs'])['peer'];
+                $this->dialog_params['offset_id'] = end($res['messages'])['id'] & 4294967296;
+                if (!isset($res['count'])) {
+                    break;
                 }
             }
-            $this->dialog_params['count'] += count($res['dialogs']);
-            $this->dialog_params['offset_date'] = end($res['messages'])['date'];
-            $this->dialog_params['offset_peer'] = end($res['dialogs'])['peer'];
-            $this->dialog_params['offset_id'] = end($res['messages'])['id'];
-            if (!isset($res['count'])) {
-                break;
-            }
+        } finally {
+            $this->updates_state['sync_loading'] = false;
         }
-
-        $this->updates_state['sync_loading'] = false;
 
         return $peers;
     }

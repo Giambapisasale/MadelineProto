@@ -28,6 +28,10 @@ class Serialization
      */
     public static function serialize($filename, $instance, $force = false)
     {
+        if (isset($instance->API->setdem) && $instance->API->setdem) {
+            $instance->API->setdem = false;
+            $instance->API->__construct($instance->API->settings);
+        }
         if (!file_exists($lock = $filename.'.lock')) {
             touch($lock);
             clearstatcache();
@@ -64,6 +68,7 @@ class Serialization
             $unserialized = file_get_contents($filename);
             flock($lock, LOCK_UN);
             fclose($lock);
+
             $tounserialize = str_replace('O:26:"danog\MadelineProto\Button":', 'O:35:"danog\MadelineProto\TL\Types\Button":', $unserialized);
             foreach (['RSA', 'TL\TLMethod', 'TL\TLConstructor', 'MTProto', 'API', 'DataCenter', 'Connection', 'TL\Types\Button', 'TL\Types\Bytes', 'APIFactory'] as $class) {
                 class_exists('\danog\MadelineProto\\'.$class);
@@ -72,20 +77,27 @@ class Serialization
             \danog\MadelineProto\Logger::class_exists();
 
             try {
+//                $unserialized = \danog\Serialization::unserialize($tounserialize);
                 $unserialized = unserialize($tounserialize);
             } catch (\danog\MadelineProto\Bug74586Exception $e) {
                 $unserialized = \danog\Serialization::unserialize($tounserialize);
             } catch (\danog\MadelineProto\Exception $e) {
+                if (Logger::$constructed) {
+                    Logger::log([(string) $e], Logger::ERROR);
+                }
+                if (strpos($e->getMessage(), "Erroneous data format for unserializing 'phpseclib\Math\BigInteger'") === 0) {
+                    $tounserialize = str_replace('phpseclib\Math\BigInteger', 'phpseclib\Math\BigIntegor', $unserialized);
+                }
                 $unserialized = \danog\Serialization::unserialize($tounserialize);
             }
             if ($unserialized instanceof \danog\PlaceHolder) {
                 $unserialized = \danog\Serialization::unserialize($tounserialize);
             }
         } else {
-            throw new Exception('File does not exist');
+            throw new Exception(\danog\MadelineProto\Lang::$current_lang['file_not_exist']);
         }
         if ($unserialized === false) {
-            throw new Exception('An error occurred on deserialization');
+            throw new Exception(\danog\MadelineProto\Lang::$current_lang['deserialization_error']);
         }
 
         return $unserialized;
